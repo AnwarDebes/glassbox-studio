@@ -1,0 +1,47 @@
+{
+  "name": "glassbox-studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The coding agent that shows its work. A browser IDE where every agent step is checked by readable Tsetlin Machine logic and acted out by Pixie.",
+  "author": "Anwar Debes (https://github.com/AnwarDebes)",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnwarDebes/glassbox-studio.git"
+  },
+  "homepage": "https://anwardebes.github.io/glassbox-studio/",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.node.json --noEmit",
+    "build": "npm run typecheck && vite build",
+    "preview": "vite preview --port 4173 --strictPort",
+    "test:e2e": "playwright test",
+    "screenshots": "playwright test e2e/screenshots.spec.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/instrument-sans": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@mlc-ai/web-llm": "^0.2.87",
+    "@monaco-editor/react": "^4.7.0",
+    "idb-keyval": "^6.3.0",
+    "jszip": "^3.10.2",
+    "monaco-editor": "^0.57.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zustand": "^5.0.16"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/wicg-file-system-access": "^2023.10.5",
+    "@vitejs/plugin-react": "^6.1.2",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vite-plugin-pwa": "^2.0.0",
+    "workbox-window": "^7.4.1"
+  }
+}

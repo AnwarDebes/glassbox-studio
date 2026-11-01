@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Glassbox Studio</title>
+    <meta name="description" content="The coding agent that shows its work. A browser IDE where every agent step is checked by readable logic before it runs, and Pixie acts it out." />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#08161a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e8f0f1" media="(prefers-color-scheme: light)" />
+    <meta name="referrer" content="no-referrer" />
+    <meta property="og:title" content="Glassbox Studio" />
+    <meta property="og:description" content="The coding agent that shows its work." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <script>
+      // Apply the saved theme before first paint so there is no flash.
+      (function () {
+        try {
+          var saved = localStorage.getItem('gbx.theme');
+          if (saved === 'light' || saved === 'dark') document.documentElement.dataset.theme = saved;
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="font-family: system-ui, sans-serif; padding: 24px">
+        Glassbox Studio runs entirely in your browser and needs JavaScript enabled.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

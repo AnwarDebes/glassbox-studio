@@ -1,0 +1,580 @@
+/* Glassbox Studio: tokens and shared primitives.
+   Night glass by default: deep bottle-teal ink, translucent panes with a lit
+   top edge, and colour reserved for meaning (allow, ask, block; LLM vs logic). */
+
+:root {
+  --font-ui: 'Instrument Sans Variable', 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-code: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
+
+  --bg: #08161a;
+  --bg-deep: #051013;
+  --pane: rgba(160, 214, 222, 0.05);
+  --pane-2: rgba(160, 214, 222, 0.085);
+  --pane-3: rgba(160, 214, 222, 0.13);
+  --pane-solid: #0d2228;
+  --pane-float: rgba(11, 30, 35, 0.78);
+  --edge: rgba(188, 236, 240, 0.1);
+  --edge-2: rgba(188, 236, 240, 0.18);
+  --lit: rgba(255, 255, 255, 0.06);
+  --text: #e3eff1;
+  --text-2: #a7bdc2;
+  --text-3: #7b9399;
+  --glass: #7ce7df;
+  --glass-soft: rgba(124, 231, 223, 0.14);
+  --on-glass: #032220;
+  --llm: #b9a7ff;
+  --llm-soft: rgba(185, 167, 255, 0.14);
+  --allow: #5fd8a0;
+  --allow-soft: rgba(95, 216, 160, 0.13);
+  --ask: #f4c45e;
+  --ask-soft: rgba(244, 196, 94, 0.14);
+  --block: #ff7d88;
+  --block-soft: rgba(255, 125, 136, 0.13);
+  --pixie: #d97757;
+  --focus: #7ce7df;
+  --code-bg: rgba(0, 0, 0, 0.28);
+  --shadow-float: 0 24px 60px -24px rgba(0, 0, 0, 0.7), 0 2px 8px rgba(0, 0, 0, 0.25);
+  --leak-a: rgba(124, 231, 223, 0.11);
+  --leak-b: rgba(185, 167, 255, 0.08);
+  --leak-c: rgba(217, 119, 87, 0.05);
+
+  --r-s: 6px;
+  --r-m: 10px;
+  --r-l: 14px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --t-fast: 140ms;
+  --t-med: 240ms;
+
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #e4eef0;
+  --bg-deep: #d6e4e7;
+  --pane: rgba(255, 255, 255, 0.55);
+  --pane-2: rgba(255, 255, 255, 0.72);
+  --pane-3: rgba(255, 255, 255, 0.9);
+  --pane-solid: #f3f8f9;
+  --pane-float: rgba(246, 251, 251, 0.86);
+  --edge: rgba(10, 52, 60, 0.12);
+  --edge-2: rgba(10, 52, 60, 0.22);
+  --lit: rgba(255, 255, 255, 0.9);
+  --text: #0b2025;
+  --text-2: #36555c;
+  --text-3: #4f6d74;
+  --glass: #05706a;
+  --glass-soft: rgba(5, 112, 106, 0.1);
+  --on-glass: #ffffff;
+  --llm: #5841d4;
+  --llm-soft: rgba(88, 65, 212, 0.1);
+  --allow: #0f7446;
+  --allow-soft: rgba(15, 116, 70, 0.1);
+  --ask: #8a5a00;
+  --ask-soft: rgba(176, 116, 0, 0.12);
+  --block: #bf2a41;
+  --block-soft: rgba(191, 42, 65, 0.09);
+  --focus: #05706a;
+  --code-bg: rgba(10, 52, 60, 0.06);
+  --shadow-float: 0 24px 60px -28px rgba(10, 40, 48, 0.45), 0 2px 8px rgba(10, 40, 48, 0.12);
+  --leak-a: rgba(5, 112, 106, 0.12);
+  --leak-b: rgba(88, 65, 212, 0.08);
+  --leak-c: rgba(217, 119, 87, 0.08);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --bg: #e4eef0;
+    --bg-deep: #d6e4e7;
+    --pane: rgba(255, 255, 255, 0.55);
+    --pane-2: rgba(255, 255, 255, 0.72);
+    --pane-3: rgba(255, 255, 255, 0.9);
+    --pane-solid: #f3f8f9;
+    --pane-float: rgba(246, 251, 251, 0.86);
+    --edge: rgba(10, 52, 60, 0.12);
+    --edge-2: rgba(10, 52, 60, 0.22);
+    --lit: rgba(255, 255, 255, 0.9);
+    --text: #0b2025;
+    --text-2: #36555c;
+    --text-3: #4f6d74;
+    --glass: #05706a;
+    --glass-soft: rgba(5, 112, 106, 0.1);
+    --on-glass: #ffffff;
+    --llm: #5841d4;
+    --llm-soft: rgba(88, 65, 212, 0.1);
+    --allow: #0f7446;
+    --allow-soft: rgba(15, 116, 70, 0.1);
+    --ask: #8a5a00;
+    --ask-soft: rgba(176, 116, 0, 0.12);
+    --block: #bf2a41;
+    --block-soft: rgba(191, 42, 65, 0.09);
+    --focus: #05706a;
+    --code-bg: rgba(10, 52, 60, 0.06);
+    --shadow-float: 0 24px 60px -28px rgba(10, 40, 48, 0.45), 0 2px 8px rgba(10, 40, 48, 0.12);
+    --leak-a: rgba(5, 112, 106, 0.12);
+    --leak-b: rgba(88, 65, 212, 0.08);
+    --leak-c: rgba(217, 119, 87, 0.08);
+    color-scheme: light;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  background:
+    radial-gradient(1100px 620px at 8% -12%, var(--leak-a), transparent 62%),
+    radial-gradient(900px 700px at 105% 108%, var(--leak-b), transparent 60%),
+    radial-gradient(700px 500px at 60% 40%, var(--leak-c), transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--glass);
+  text-underline-offset: 2px;
+}
+
+code,
+kbd,
+pre,
+.mono {
+  font-family: var(--font-code);
+  font-size: 0.92em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--glass) 32%, transparent);
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 12px;
+  top: -48px;
+  z-index: 100;
+  padding: 8px 12px;
+  border-radius: var(--r-s);
+  background: var(--pane-solid);
+  color: var(--text);
+  border: 1px solid var(--edge-2);
+  transition: top var(--t-fast) var(--ease);
+}
+.skip-link:focus {
+  top: 10px;
+}
+
+/* Scrollbars that stay out of the way */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--edge-2) transparent;
+}
+
+/* ---- Panes: translucent tiles with a lit top edge ---- */
+.pane {
+  background: var(--pane);
+  border: 1px solid var(--edge);
+  border-radius: var(--r-l);
+  box-shadow: inset 0 1px 0 var(--lit);
+}
+
+.float {
+  background: var(--pane-float);
+  border: 1px solid var(--edge-2);
+  box-shadow: var(--shadow-float), inset 0 1px 0 var(--lit);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: var(--r-s);
+  border: 1px solid var(--edge-2);
+  background: var(--pane-2);
+  color: var(--text);
+  font-weight: 550;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    transform var(--t-fast) var(--ease);
+  text-decoration: none;
+}
+.btn:hover:not(:disabled) {
+  background: var(--pane-3);
+  border-color: color-mix(in srgb, var(--text) 30%, transparent);
+}
+.btn:active:not(:disabled) {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn.primary {
+  background: var(--glass);
+  border-color: transparent;
+  color: var(--on-glass);
+}
+.btn.primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--glass) 88%, white);
+}
+.btn.ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-2);
+}
+.btn.ghost:hover:not(:disabled) {
+  background: var(--pane-2);
+  color: var(--text);
+}
+.btn.danger {
+  color: var(--block);
+  border-color: color-mix(in srgb, var(--block) 45%, transparent);
+  background: var(--block-soft);
+}
+.btn.approve {
+  background: var(--allow);
+  color: #04170e;
+  border-color: transparent;
+}
+:root[data-theme='light'] .btn.approve {
+  color: #fff;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) .btn.approve {
+    color: #fff;
+  }
+}
+.btn.sm {
+  height: 26px;
+  padding: 0 9px;
+  font-size: 12.5px;
+}
+.btn.lg {
+  height: 42px;
+  padding: 0 18px;
+  font-size: 15px;
+  border-radius: var(--r-m);
+}
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-s);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  transition:
+    background var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease);
+}
+.icon-btn:hover {
+  background: var(--pane-2);
+  color: var(--text);
+}
+.icon-btn[aria-pressed='true'] {
+  color: var(--glass);
+  background: var(--glass-soft);
+}
+
+/* ---- Inputs ---- */
+.field {
+  display: grid;
+  gap: 6px;
+}
+.field > span,
+.field > label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+.input {
+  height: 34px;
+  width: 100%;
+  padding: 0 10px;
+  border-radius: var(--r-s);
+  border: 1px solid var(--edge-2);
+  background: var(--code-bg);
+  color: var(--text);
+  outline: none;
+}
+.input:focus {
+  border-color: var(--glass);
+  box-shadow: 0 0 0 3px var(--glass-soft);
+}
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-2);
+  cursor: pointer;
+}
+.check input {
+  accent-color: var(--glass);
+  width: 15px;
+  height: 15px;
+}
+
+/* ---- Decision pills ---- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.pill.allow {
+  color: var(--allow);
+  background: var(--allow-soft);
+}
+.pill.ask {
+  color: var(--ask);
+  background: var(--ask-soft);
+}
+.pill.block {
+  color: var(--block);
+  background: var(--block-soft);
+}
+.pill.glass {
+  color: var(--glass);
+  background: var(--glass-soft);
+}
+.pill.llm {
+  color: var(--llm);
+  background: var(--llm-soft);
+}
+.pill.muted {
+  color: var(--text-2);
+  background: var(--pane-2);
+}
+
+/* ---- Toggle switch (used in the composer and dialogs) ---- */
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 28px;
+  padding: 0 10px 0 6px;
+  border-radius: 999px;
+  border: 1px solid var(--edge);
+  background: transparent;
+  color: var(--text-2);
+  font-size: 12.5px;
+  font-weight: 550;
+  cursor: pointer;
+  transition:
+    background var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease);
+}
+.switch .knob {
+  position: relative;
+  width: 24px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--pane-3);
+  border: 1px solid var(--edge-2);
+  transition: background var(--t-fast) var(--ease);
+}
+.switch .knob::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text-3);
+  transition:
+    transform var(--t-med) var(--ease),
+    background var(--t-fast) var(--ease);
+}
+.switch[aria-checked='true'] {
+  color: var(--text);
+  border-color: var(--edge-2);
+  background: var(--pane-2);
+}
+.switch[aria-checked='true'] .knob {
+  background: var(--glass-soft);
+  border-color: color-mix(in srgb, var(--glass) 60%, transparent);
+}
+.switch[aria-checked='true'] .knob::after {
+  transform: translateX(10px);
+  background: var(--glass);
+}
+.switch:hover {
+  color: var(--text);
+}
+
+/* ---- Dialogs ---- */
+dialog.sheet {
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  max-width: min(980px, calc(100vw - 32px));
+  width: 100%;
+  max-height: min(820px, calc(100dvh - 40px));
+}
+dialog.sheet::backdrop {
+  background: rgba(2, 10, 12, 0.55);
+  backdrop-filter: blur(3px);
+}
+dialog.sheet[open] {
+  animation: sheet-in var(--t-med) var(--ease);
+}
+.sheet-body {
+  display: flex;
+  flex-direction: column;
+  max-height: min(820px, calc(100dvh - 40px));
+  border-radius: var(--r-l);
+  overflow: hidden;
+}
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+}
+
+/* ---- Toasts ---- */
+.toasts {
+  position: fixed;
+  right: 16px;
+  bottom: 40px;
+  z-index: 60;
+  display: grid;
+  gap: 8px;
+  width: min(380px, calc(100vw - 32px));
+}
+.toast {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border-radius: var(--r-m);
+  font-size: 13.5px;
+  animation: sheet-in var(--t-med) var(--ease);
+}
+.toast .grow {
+  flex: 1;
+}
+
+.muted {
+  color: var(--text-2);
+}
+.faint {
+  color: var(--text-3);
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.grow {
+  flex: 1;
+  min-width: 0;
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pixie-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Text tinted with a model's own colour: the raw colour on dark glass, a
+   deepened mix on light glass so it keeps 4.5:1 contrast. */
+.model-tinted {
+  --model-text: var(--model, var(--glass));
+}
+:root[data-theme='light'] .model-tinted {
+  --model-text: color-mix(in srgb, var(--model, var(--glass)) 38%, #0b2025);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) .model-tinted {
+    --model-text: color-mix(in srgb, var(--model, var(--glass)) 38%, #0b2025);
+  }
+}
