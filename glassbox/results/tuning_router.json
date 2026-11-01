@@ -1,0 +1,437 @@
+{
+ "note": "Validation-split results only; the test split is not read during tuning.",
+ "runs": [
+  {
+   "cfg": {
+    "clauses": 100,
+    "T": 300,
+    "s": 3.0,
+    "epochs": 20,
+    "negation": "standard",
+    "min_df": {
+     "w": 3,
+     "b": 4,
+     "f": 3,
+     "*": 1
+    },
+    "caps": {
+     "w": 350,
+     "b": 200,
+     "f": 60
+    },
+    "seed": 1
+   },
+   "features": 628,
+   "valCurve": [
+    0.9051,
+    0.9154,
+    0.9564,
+    0.9615,
+    0.9667,
+    0.959,
+    0.959,
+    0.9692,
+    0.9718,
+    0.9692,
+    0.9692,
+    0.9718,
+    0.9744,
+    0.9744,
+    0.9769,
+    0.9769,
+    0.9821,
+    0.9795,
+    0.9744,
+    0.9821
+   ],
+   "bestEpoch": 17,
+   "valAtLastEpoch": 0.9821,
+   "valAfterPruning": 0.9897,
+   "avgLiteralsAfterPruning": 22.41,
+   "pruning": {
+    "includedLiteralsBefore": 55611,
+    "includedLiteralsAfter": 11094,
+    "clausesRewritten": 494
+   },
+   "seconds": 246.1
+  },
+  {
+   "cfg": {
+    "clauses": 100,
+    "T": 600,
+    "s": 3.0,
+    "epochs": 20,
+    "negation": "standard",
+    "min_df": {
+     "w": 3,
+     "b": 4,
+     "f": 3,
+     "*": 1
+    },
+    "caps": {
+     "w": 350,
+     "b": 200,
+     "f": 60
+    },
+    "seed": 1
+   },
+   "features": 628,
+   "valCurve": [
+    0.9103,
+    0.9231,
+    0.9282,
+    0.9436,
+    0.9667,
+    0.9641,
+    0.9641,
+    0.9692,
+    0.9718,
+    0.9667,
+    0.9718,
+    0.9769,
+    0.9769,
+    0.9692,
+    0.9718,
+    0.9692,
+    0.9769,
+    0.9744,
+    0.9769,
+    0.9821
+   ],
+   "bestEpoch": 20,
+   "valAtLastEpoch": 0.9821,
+   "valAfterPruning": 0.9846,
+   "avgLiteralsAfterPruning": 24.72,
+   "pruning": {
+    "includedLiteralsBefore": 65601,
+    "includedLiteralsAfter": 12359,
+    "clausesRewritten": 499
+   },
+   "seconds": 243.7
+  },
+  {
+   "cfg": {
+    "clauses": 100,
+    "T": 300,
+    "s": 6.0,
+    "epochs": 20,
+    "negation": "standard",
+    "min_df": {
+     "w": 3,
+     "b": 4,
+     "f": 3,
+     "*": 1
+    },
+    "caps": {
+     "w": 350,
+     "b": 200,
+     "f": 60
+    },
+    "seed": 1
+   },
+   "features": 628,
+   "valCurve": [
+    0.8744,
+    0.8923,
+    0.9128,
+    0.9231,
+    0.9282,
+    0.941,
+    0.9513,
+    0.9538,
+    0.9564,
+    0.9462,
+    0.959,
+    0.9513,
+    0.959,
+    0.9667,
+    0.9641,
+    0.9641,
+    0.9667,
+    0.9641,
+    0.9718,
+    0.9821
+   ],
+   "bestEpoch": 20,
+   "valAtLastEpoch": 0.9821,
+   "valAfterPruning": 0.9821,
+   "avgLiteralsAfterPruning": 16.08,
+   "pruning": {
+    "includedLiteralsBefore": 53466,
+    "includedLiteralsAfter": 7928,
+    "clausesRewritten": 491
+   },
+   "seconds": 267.8
+  },
+  {
+   "cfg": {
+    "clauses": 60,
+    "T": 600,
+    "s": 3.0,
+    "epochs": 20,
+    "negation": "standard",
+    "min_df": {
+     "w": 3,
+     "b": 4,
+     "f": 3,
+     "*": 1
+    },
+    "caps": {
+     "w": 350,
+     "b": 200,
+     "f": 60
+    },
+    "seed": 1
+   },
+   "features": 628,
+   "valCurve": [
+    0.9,
+    0.8923,
+    0.9231,
+    0.9436,
+    0.9462,
+    0.9513,
+    0.959,
+    0.9615,
+    0.9513,
+    0.9667,
+    0.9769,
+    0.9692,
+    0.9667,
+    0.9769,
+    0.9718,
+    0.9641,
+    0.9744,
+    0.9744,
+    0.9718,
+    0.9769
+   ],
+   "bestEpoch": 11,
+   "valAtLastEpoch": 0.9769,
+   "valAfterPruning": 0.9821,
+   "avgLiteralsAfterPruning": 26.06,
+   "pruning": {
+    "includedLiteralsBefore": 38723,
+    "includedLiteralsAfter": 7818,
+    "clausesRewritten": 300
+   },
+   "seconds": 228.2
+  },
+  {
+   "cfg": {
+    "clauses": 60,
+    "T": 300,
+    "s": 6.0,
+    "epochs": 20,
+    "negation": "standard",
+    "min_df": {
+     "w": 3,
+     "b": 4,
+     "f": 3,
+     "*": 1
+    },
+    "caps": {
+     "w": 350,
+     "b": 200,
+     "f": 60
+    },
+    "seed": 1
+   },
+   "features": 628,
+   "valCurve": [
+    0.7897,
+    0.9051,
+    0.9205,
+    0.9103,
+    0.9205,
+    0.9359,
+    0.9282,
+    0.9462,
+    0.959,
+    0.9538,
+    0.9564,
+    0.9487,
+    0.9564,
+    0.9513,
+    0.9513,
+    0.9564,
+    0.9615,
+    0.9667,
+    0.9615,
+    0.9718
+   ],
+   "bestEpoch": 20,
+   "valAtLastEpoch": 0.9718,
+   "valAfterPruning": 0.9795,
+   "avgLiteralsAfterPruning": 17.13,
+   "pruning": {
+    "includedLiteralsBefore": 34522,
+    "includedLiteralsAfter": 5106,
+    "clausesRewritten": 296
+   },
+   "seconds": 219.0
+  },
+  {
+   "cfg": {
+    "clauses": 100,
+    "T": 600,
+    "s": 6.0,
+    "epochs": 20,
+    "negation": "standard",
+    "min_df": {
+     "w": 3,
+     "b": 4,
+     "f": 3,
+     "*": 1
+    },
+    "caps": {
+     "w": 350,
+     "b": 200,
+     "f": 60
+    },
+    "seed": 1
+   },
+   "features": 628,
+   "valCurve": [
+    0.8564,
+    0.8744,
+    0.8846,
+    0.9205,
+    0.9282,
+    0.9308,
+    0.9282,
+    0.9538,
+    0.9564,
+    0.9641,
+    0.959,
+    0.9641,
+    0.9641,
+    0.9692,
+    0.9641,
+    0.9692,
+    0.9718,
+    0.9744,
+    0.9718,
+    0.9744
+   ],
+   "bestEpoch": 18,
+   "valAtLastEpoch": 0.9744,
+   "valAfterPruning": 0.9795,
+   "avgLiteralsAfterPruning": 19.24,
+   "pruning": {
+    "includedLiteralsBefore": 67663,
+    "includedLiteralsAfter": 9600,
+    "clausesRewritten": 499
+   },
+   "seconds": 296.9
+  },
+  {
+   "cfg": {
+    "clauses": 60,
+    "T": 300,
+    "s": 3.0,
+    "epochs": 20,
+    "negation": "standard",
+    "min_df": {
+     "w": 3,
+     "b": 4,
+     "f": 3,
+     "*": 1
+    },
+    "caps": {
+     "w": 350,
+     "b": 200,
+     "f": 60
+    },
+    "seed": 1
+   },
+   "features": 628,
+   "valCurve": [
+    0.8718,
+    0.9154,
+    0.9282,
+    0.9564,
+    0.9564,
+    0.9744,
+    0.9615,
+    0.9692,
+    0.9718,
+    0.9795,
+    0.9769,
+    0.9821,
+    0.9795,
+    0.9718,
+    0.9769,
+    0.9769,
+    0.9692,
+    0.9744,
+    0.9769,
+    0.9744
+   ],
+   "bestEpoch": 12,
+   "valAtLastEpoch": 0.9744,
+   "valAfterPruning": 0.9769,
+   "avgLiteralsAfterPruning": 21.85,
+   "pruning": {
+    "includedLiteralsBefore": 33083,
+    "includedLiteralsAfter": 6534,
+    "clausesRewritten": 299
+   },
+   "seconds": 190.4
+  },
+  {
+   "cfg": {
+    "clauses": 60,
+    "T": 600,
+    "s": 6.0,
+    "epochs": 20,
+    "negation": "standard",
+    "min_df": {
+     "w": 3,
+     "b": 4,
+     "f": 3,
+     "*": 1
+    },
+    "caps": {
+     "w": 350,
+     "b": 200,
+     "f": 60
+    },
+    "seed": 1
+   },
+   "features": 628,
+   "valCurve": [
+    0.8385,
+    0.9,
+    0.8949,
+    0.9128,
+    0.9154,
+    0.9154,
+    0.9333,
+    0.9487,
+    0.9308,
+    0.9359,
+    0.9436,
+    0.9513,
+    0.9564,
+    0.9641,
+    0.9744,
+    0.9769,
+    0.9718,
+    0.9718,
+    0.9692,
+    0.9744
+   ],
+   "bestEpoch": 16,
+   "valAtLastEpoch": 0.9744,
+   "valAfterPruning": 0.9769,
+   "avgLiteralsAfterPruning": 19.43,
+   "pruning": {
+    "includedLiteralsBefore": 43374,
+    "includedLiteralsAfter": 5828,
+    "clausesRewritten": 299
+   },
+   "seconds": 239.4
+  }
+ ]
+}

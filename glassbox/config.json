@@ -1,0 +1,69 @@
+{
+  "guard": {
+    "final": {
+      "clauses": 60,
+      "T": 300,
+      "s": 3.0,
+      "epochs": 20,
+      "negation": "standard",
+      "min_df": {
+        "*": 4
+      },
+      "caps": {
+        "cmd": 70,
+        "sub": 50,
+        "flag": 40
+      },
+      "seed": 1
+    },
+    "grid": {
+      "clauses": [
+        60,
+        100
+      ],
+      "T": [
+        300,
+        500
+      ],
+      "s": [
+        3.0,
+        5.0
+      ]
+    }
+  },
+  "router": {
+    "final": {
+      "clauses": 100,
+      "T": 300,
+      "s": 3.0,
+      "epochs": 20,
+      "negation": "standard",
+      "min_df": {
+        "w": 3,
+        "b": 4,
+        "f": 3,
+        "*": 1
+      },
+      "caps": {
+        "w": 350,
+        "b": 200,
+        "f": 60
+      },
+      "seed": 1
+    },
+    "grid": {
+      "clauses": [
+        60,
+        100
+      ],
+      "T": [
+        300,
+        600
+      ],
+      "s": [
+        3.0,
+        6.0
+      ]
+    }
+  }
+}

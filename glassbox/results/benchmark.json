@@ -1,0 +1,31 @@
+{
+ "date": "2026-11-01T13:37:22.413Z",
+ "node": "v22.14.0",
+ "cpu": "11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz",
+ "platform": "win32 10.0.26300",
+ "rounds": 50,
+ "guard": {
+  "calls": 10000,
+  "meanMs": 0.114,
+  "medianMs": 0.0982,
+  "p99Ms": 0.3833,
+  "maxMs": 4.1179,
+  "throughputPerSecond": 8732,
+  "clausesEvaluated": 180,
+  "avgLiteralChecks": 2754,
+  "avgEstimatedOps": 6290,
+  "savingsVs1B300": "about 95,000,000x less compute than asking a 1B-parameter model"
+ },
+ "route": {
+  "calls": 10000,
+  "meanMs": 0.0776,
+  "medianMs": 0.065,
+  "p99Ms": 0.2486,
+  "maxMs": 1.311,
+  "throughputPerSecond": 12824,
+  "clausesEvaluated": 497,
+  "avgLiteralChecks": 5158,
+  "avgEstimatedOps": 6393,
+  "savingsVs1B300": "about 94,000,000x less compute than asking a 1B-parameter model"
+ }
+}

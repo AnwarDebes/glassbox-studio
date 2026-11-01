@@ -1,0 +1,120 @@
+{"id": "rc000", "label": "answer", "prompt": "what's the difference between a process and a thread?", "template": "challenge"}
+{"id": "rc001", "label": "answer", "prompt": "why does JavaScript have both null and undefined", "template": "challenge"}
+{"id": "rc002", "label": "answer", "prompt": "can you explain how React's reconciliation works", "template": "challenge"}
+{"id": "rc003", "label": "answer", "prompt": "is it safe to store JWTs in localStorage?", "template": "challenge"}
+{"id": "rc004", "label": "answer", "prompt": "what does the `-u` flag in git push mean?", "template": "challenge"}
+{"id": "rc005", "label": "answer", "prompt": "how should I think about database transactions?", "template": "challenge"}
+{"id": "rc006", "label": "answer", "prompt": "explain this regex: ^(?=.*[A-Z]).{8,}$", "template": "challenge"}
+{"id": "rc007", "label": "answer", "prompt": "what's a race condition, in simple terms?", "template": "challenge"}
+{"id": "rc008", "label": "answer", "prompt": "why is my python list comprehension slower than map?", "template": "challenge"}
+{"id": "rc009", "label": "answer", "prompt": "hey! how are you today?", "template": "challenge"}
+{"id": "rc010", "label": "answer", "prompt": "what's the point of a lockfile?", "template": "challenge"}
+{"id": "rc011", "label": "answer", "prompt": "explain the tradeoffs of microservices vs a monolith", "template": "challenge"}
+{"id": "rc012", "label": "answer", "prompt": "how do I reverse a string in Go?", "template": "challenge"}
+{"id": "rc013", "label": "answer", "prompt": "what does O(n log n) mean?", "template": "challenge"}
+{"id": "rc014", "label": "answer", "prompt": "remind me what CORS preflight requests are", "template": "challenge"}
+{"id": "rc015", "label": "answer", "prompt": "why do people say don't mutate state in React?", "template": "challenge"}
+{"id": "rc016", "label": "answer", "prompt": "what is the difference between npm install and npm ci?", "template": "challenge"}
+{"id": "rc017", "label": "answer", "prompt": "how does garbage collection work in Java?", "template": "challenge"}
+{"id": "rc018", "label": "answer", "prompt": "is recursion always slower than iteration?", "template": "challenge"}
+{"id": "rc019", "label": "answer", "prompt": "what are Tsetlin machines good at?", "template": "challenge"}
+{"id": "rc020", "label": "answer", "prompt": "explain what this does: function f(n) { return n < 2 ? n : f(n-1) + f(n-2) }", "template": "challenge"}
+{"id": "rc021", "label": "answer", "prompt": "what's idiomatic error handling in Rust?", "template": "challenge"}
+{"id": "rc022", "label": "answer", "prompt": "thank you, that fixed it", "template": "challenge"}
+{"id": "rc023", "label": "answer", "prompt": "when would I use a WeakMap?", "template": "challenge"}
+{"id": "rc024", "label": "edit", "prompt": "add a confirm dialog before deleting a project", "template": "challenge"}
+{"id": "rc025", "label": "edit", "prompt": "the login button is misaligned on mobile, can you fix the CSS?", "template": "challenge"}
+{"id": "rc026", "label": "edit", "prompt": "rename the user_id column to account_id everywhere", "template": "challenge"}
+{"id": "rc027", "label": "edit", "prompt": "write tests for the cart reducer", "template": "challenge"}
+{"id": "rc028", "label": "edit", "prompt": "make the sidebar collapsible", "template": "challenge"}
+{"id": "rc029", "label": "edit", "prompt": "replace all the var declarations with let/const in legacy.js", "template": "challenge"}
+{"id": "rc030", "label": "edit", "prompt": "add JSDoc comments to the public functions in api.ts", "template": "challenge"}
+{"id": "rc031", "label": "edit", "prompt": "move the date helpers into their own module", "template": "challenge"}
+{"id": "rc032", "label": "edit", "prompt": "update the copyright year in the footer to 2026", "template": "challenge"}
+{"id": "rc033", "label": "edit", "prompt": "refactor the payment service to use dependency injection", "template": "challenge"}
+{"id": "rc034", "label": "edit", "prompt": "fix the null pointer in OrderService.getTotal", "template": "challenge"}
+{"id": "rc035", "label": "edit", "prompt": "create a 404 page", "template": "challenge"}
+{"id": "rc036", "label": "edit", "prompt": "add a --verbose flag to the CLI", "template": "challenge"}
+{"id": "rc037", "label": "edit", "prompt": "change the default timeout to 30 seconds", "template": "challenge"}
+{"id": "rc038", "label": "edit", "prompt": "implement password reset via email", "template": "challenge"}
+{"id": "rc039", "label": "edit", "prompt": "remove the feature flag for the old checkout", "template": "challenge"}
+{"id": "rc040", "label": "edit", "prompt": "add type hints to utils.py", "template": "challenge"}
+{"id": "rc041", "label": "edit", "prompt": "translate the error messages into Spanish", "template": "challenge"}
+{"id": "rc042", "label": "edit", "prompt": "write a Dockerfile for this app", "template": "challenge"}
+{"id": "rc043", "label": "edit", "prompt": "make fetchOrders retry three times with backoff", "template": "challenge"}
+{"id": "rc044", "label": "edit", "prompt": "bump eslint to v9 in package.json and fix the config", "template": "challenge"}
+{"id": "rc045", "label": "edit", "prompt": "delete the unused CSS classes in app.css", "template": "challenge"}
+{"id": "rc046", "label": "edit", "prompt": "add an index on users.email in the schema", "template": "challenge"}
+{"id": "rc047", "label": "edit", "prompt": "convert the class components to hooks", "template": "challenge"}
+{"id": "rc048", "label": "run", "prompt": "run the unit tests", "template": "challenge"}
+{"id": "rc049", "label": "run", "prompt": "can you start the frontend on port 5173?", "template": "challenge"}
+{"id": "rc050", "label": "run", "prompt": "build it in release mode", "template": "challenge"}
+{"id": "rc051", "label": "run", "prompt": "install pandas", "template": "challenge"}
+{"id": "rc052", "label": "run", "prompt": "run the migrations against the local db", "template": "challenge"}
+{"id": "rc053", "label": "run", "prompt": "check if the typescript compiles", "template": "challenge"}
+{"id": "rc054", "label": "run", "prompt": "lint everything and show me the errors", "template": "challenge"}
+{"id": "rc055", "label": "run", "prompt": "run the benchmark script", "template": "challenge"}
+{"id": "rc056", "label": "run", "prompt": "start docker compose", "template": "challenge"}
+{"id": "rc057", "label": "run", "prompt": "push my branch to origin", "template": "challenge"}
+{"id": "rc058", "label": "run", "prompt": "commit everything with the message 'wip'", "template": "challenge"}
+{"id": "rc059", "label": "run", "prompt": "run `make check`", "template": "challenge"}
+{"id": "rc060", "label": "run", "prompt": "execute the seed script for the dev database", "template": "challenge"}
+{"id": "rc061", "label": "run", "prompt": "restart the api server", "template": "challenge"}
+{"id": "rc062", "label": "run", "prompt": "run pytest on tests/test_orders.py", "template": "challenge"}
+{"id": "rc063", "label": "run", "prompt": "does the e2e suite pass?", "template": "challenge"}
+{"id": "rc064", "label": "run", "prompt": "generate the openapi client", "template": "challenge"}
+{"id": "rc065", "label": "run", "prompt": "deploy the preview build", "template": "challenge"}
+{"id": "rc066", "label": "run", "prompt": "kill whatever is running on port 8080", "template": "challenge"}
+{"id": "rc067", "label": "run", "prompt": "run prettier on the whole repo", "template": "challenge"}
+{"id": "rc068", "label": "run", "prompt": "reinstall node_modules", "template": "challenge"}
+{"id": "rc069", "label": "run", "prompt": "run the app and tell me if it crashes", "template": "challenge"}
+{"id": "rc070", "label": "run", "prompt": "open a node repl", "template": "challenge"}
+{"id": "rc071", "label": "run", "prompt": "create a new git branch called hotfix/checkout", "template": "challenge"}
+{"id": "rc072", "label": "search", "prompt": "where do we define the Stripe webhook handler?", "template": "challenge"}
+{"id": "rc073", "label": "search", "prompt": "find every place that reads process.env", "template": "challenge"}
+{"id": "rc074", "label": "search", "prompt": "which files use the old logger?", "template": "challenge"}
+{"id": "rc075", "label": "search", "prompt": "show me the auth middleware", "template": "challenge"}
+{"id": "rc076", "label": "search", "prompt": "is there a helper for formatting currency already?", "template": "challenge"}
+{"id": "rc077", "label": "search", "prompt": "list the routes in the api folder", "template": "challenge"}
+{"id": "rc078", "label": "search", "prompt": "find the component that renders the pricing table", "template": "challenge"}
+{"id": "rc079", "label": "search", "prompt": "where is the redis client created?", "template": "challenge"}
+{"id": "rc080", "label": "search", "prompt": "grep for TODO in the backend", "template": "challenge"}
+{"id": "rc081", "label": "search", "prompt": "what calls sendWelcomeEmail?", "template": "challenge"}
+{"id": "rc082", "label": "search", "prompt": "open package.json", "template": "challenge"}
+{"id": "rc083", "label": "search", "prompt": "find where we set the session cookie", "template": "challenge"}
+{"id": "rc084", "label": "search", "prompt": "which tests touch the checkout flow?", "template": "challenge"}
+{"id": "rc085", "label": "search", "prompt": "search the repo for hardcoded URLs", "template": "challenge"}
+{"id": "rc086", "label": "search", "prompt": "where's the tailwind config?", "template": "challenge"}
+{"id": "rc087", "label": "search", "prompt": "show me how errors are handled in the api client", "template": "challenge"}
+{"id": "rc088", "label": "search", "prompt": "find all usages of useEffect without a dependency array", "template": "challenge"}
+{"id": "rc089", "label": "search", "prompt": "list the env variables the server reads", "template": "challenge"}
+{"id": "rc090", "label": "search", "prompt": "locate the GraphQL schema file", "template": "challenge"}
+{"id": "rc091", "label": "search", "prompt": "find the test fixtures for orders", "template": "challenge"}
+{"id": "rc092", "label": "search", "prompt": "where is MAX_RETRIES defined", "template": "challenge"}
+{"id": "rc093", "label": "search", "prompt": "show me the last migration", "template": "challenge"}
+{"id": "rc094", "label": "search", "prompt": "which components import framer-motion?", "template": "challenge"}
+{"id": "rc095", "label": "search", "prompt": "look through src for any eval calls", "template": "challenge"}
+{"id": "rc096", "label": "research", "prompt": "what's new in TypeScript 5.9?", "template": "challenge"}
+{"id": "rc097", "label": "research", "prompt": "is moment.js still maintained or should we switch?", "template": "challenge"}
+{"id": "rc098", "label": "research", "prompt": "look up how Vercel handles edge function timeouts", "template": "challenge"}
+{"id": "rc099", "label": "research", "prompt": "find the docs for the Stripe PaymentIntents API", "template": "challenge"}
+{"id": "rc100", "label": "research", "prompt": "what's the recommended node version for Next 16?", "template": "challenge"}
+{"id": "rc101", "label": "research", "prompt": "compare Bun and Node performance for HTTP servers", "template": "challenge"}
+{"id": "rc102", "label": "research", "prompt": "are there known security issues with lodash 4.17.20?", "template": "challenge"}
+{"id": "rc103", "label": "research", "prompt": "search online for ERR_REQUIRE_ESM fixes", "template": "challenge"}
+{"id": "rc104", "label": "research", "prompt": "what do people recommend for e2e testing in 2026?", "template": "challenge"}
+{"id": "rc105", "label": "research", "prompt": "find a good library for parsing CSV in Rust", "template": "challenge"}
+{"id": "rc106", "label": "research", "prompt": "check the release notes for Vite 8", "template": "challenge"}
+{"id": "rc107", "label": "research", "prompt": "what's the current pricing for Supabase pro?", "template": "challenge"}
+{"id": "rc108", "label": "research", "prompt": "read https://web.dev/articles/inp and summarize it", "template": "challenge"}
+{"id": "rc109", "label": "research", "prompt": "look up the browser support for the Popover API", "template": "challenge"}
+{"id": "rc110", "label": "research", "prompt": "find the GitHub issue about hydration warnings in React 19", "template": "challenge"}
+{"id": "rc111", "label": "research", "prompt": "what's the latest stable Kubernetes release?", "template": "challenge"}
+{"id": "rc112", "label": "research", "prompt": "is Deno 2 compatible with npm packages now?", "template": "challenge"}
+{"id": "rc113", "label": "research", "prompt": "google best practices for API versioning", "template": "challenge"}
+{"id": "rc114", "label": "research", "prompt": "find benchmarks comparing Postgres and SQLite for small apps", "template": "challenge"}
+{"id": "rc115", "label": "research", "prompt": "what are the rate limits for the GitHub GraphQL API?", "template": "challenge"}
+{"id": "rc116", "label": "research", "prompt": "check whether Safari supports CSS anchor positioning yet", "template": "challenge"}
+{"id": "rc117", "label": "research", "prompt": "research how other projects do plugin systems", "template": "challenge"}
+{"id": "rc118", "label": "research", "prompt": "fetch the changelog from https://github.com/vitejs/vite/blob/main/packages/vite/CHANGELOG.md", "template": "challenge"}
+{"id": "rc119", "label": "research", "prompt": "which state management library is most popular in 2026?", "template": "challenge"}

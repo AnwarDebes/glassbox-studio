@@ -1,0 +1,1576 @@
+{
+ "model": "glassbox-router",
+ "trainedAt": "2026-11-01T13:37:03Z",
+ "command": "python glassbox/train.py",
+ "metrics": {
+  "heldOut": {
+   "accuracy": 0.9865,
+   "macroF1": 0.9866,
+   "n": 520,
+   "perClass": {
+    "answer": {
+     "precision": 0.9727,
+     "recall": 0.9907,
+     "f1": 0.9817,
+     "support": 108
+    },
+    "edit": {
+     "precision": 0.9818,
+     "recall": 1.0,
+     "f1": 0.9908,
+     "support": 108
+    },
+    "run": {
+     "precision": 0.9903,
+     "recall": 0.9808,
+     "f1": 0.9855,
+     "support": 104
+    },
+    "search": {
+     "precision": 0.9898,
+     "recall": 0.97,
+     "f1": 0.9798,
+     "support": 100
+    },
+    "research": {
+     "precision": 1.0,
+     "recall": 0.99,
+     "f1": 0.995,
+     "support": 100
+    }
+   },
+   "confusion": {
+    "rows": "true",
+    "cols": "predicted",
+    "classes": [
+     "answer",
+     "edit",
+     "run",
+     "search",
+     "research"
+    ],
+    "matrix": [
+     [
+      107,
+      0,
+      1,
+      0,
+      0
+     ],
+     [
+      0,
+      108,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      2,
+      102,
+      0,
+      0
+     ],
+     [
+      3,
+      0,
+      0,
+      97,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      1,
+      99
+     ]
+    ]
+   }
+  },
+  "challenge": {
+   "accuracy": 0.9583,
+   "macroF1": 0.9578,
+   "n": 120,
+   "perClass": {
+    "answer": {
+     "precision": 0.9545,
+     "recall": 0.875,
+     "f1": 0.913,
+     "support": 24
+    },
+    "edit": {
+     "precision": 0.96,
+     "recall": 1.0,
+     "f1": 0.9796,
+     "support": 24
+    },
+    "run": {
+     "precision": 0.96,
+     "recall": 1.0,
+     "f1": 0.9796,
+     "support": 24
+    },
+    "search": {
+     "precision": 0.9583,
+     "recall": 0.9583,
+     "f1": 0.9583,
+     "support": 24
+    },
+    "research": {
+     "precision": 0.9583,
+     "recall": 0.9583,
+     "f1": 0.9583,
+     "support": 24
+    }
+   },
+   "confusion": {
+    "rows": "true",
+    "cols": "predicted",
+    "classes": [
+     "answer",
+     "edit",
+     "run",
+     "search",
+     "research"
+    ],
+    "matrix": [
+     [
+      21,
+      1,
+      1,
+      0,
+      1
+     ],
+     [
+      0,
+      24,
+      0,
+      0,
+      0
+     ],
+     [
+      0,
+      0,
+      24,
+      0,
+      0
+     ],
+     [
+      1,
+      0,
+      0,
+      23,
+      0
+     ],
+     [
+      0,
+      0,
+      0,
+      1,
+      23
+     ]
+    ]
+   }
+  },
+  "trainPlusVal": {
+   "accuracy": 0.9986,
+   "n": 2080
+  }
+ },
+ "meta": {
+  "trainedAt": "2026-11-01T13:37:03Z",
+  "trainSize": 2080,
+  "heldOutSize": 520,
+  "challengeSize": 120,
+  "clauses": 497,
+  "avgLiterals": 22.82,
+  "maxLiterals": 84,
+  "clausesPerClass": {
+   "answer": 100,
+   "edit": 99,
+   "run": 98,
+   "search": 100,
+   "research": 100
+  },
+  "features": 628,
+  "datasetSha256": "d5cbe731ffc34c527873edff3c86b07c0cc06b47a41eaf0115ec4b5990863dfd",
+  "dataset": "glassbox/data/router.jsonl",
+  "challengeSha256": "b2c0d3ef9f206cdbec6906fc530519f7f4bcfc839709a82b44640da102adc7ad",
+  "splitSeed": 2026,
+  "command": "python glassbox/train.py",
+  "hyperparameters": {
+   "clauses": 100,
+   "T": 300,
+   "s": 3.0,
+   "epochs": 20,
+   "negation": "standard",
+   "min_df": {
+    "w": 3,
+    "b": 4,
+    "f": 3,
+    "*": 1
+   },
+   "caps": {
+    "w": 350,
+    "b": 200,
+    "f": 60
+   },
+   "seed": 1
+  },
+  "trainSeconds": 7.9,
+  "pruning": {
+   "includedLiteralsBefore": 54079,
+   "includedLiteralsAfter": 11344,
+   "clausesRewritten": 497,
+   "droppedClauses": {
+    "empty": 2,
+    "never_fires_on_training_data": 1
+   },
+   "trainPlusValAccuracyBeforePruning": 0.9986
+  },
+  "environment": {
+   "python": "3.14.3",
+   "numpy": "2.5.4"
+  },
+  "notes": "Tsetlin Machine, 497 weighted clauses over 628 named features. Held-out accuracy 98.7% on 520 synthetic examples from the same templates as training; 95.8% on 120 hand-written out-of-template examples. Prototype: trained on synthetic data."
+ },
+ "perGroupHeldOutAccuracy": {
+  "ELI5 {concept}": {
+   "correct": 1,
+   "n": 1
+  },
+  "I don't understand {concept}": {
+   "correct": 2,
+   "n": 2
+  },
+  "`npm test`": {
+   "correct": 2,
+   "n": 2
+  },
+  "add .env to .gitignore": {
+   "correct": 1,
+   "n": 1
+  },
+  "add a CHANGELOG entry for this release": {
+   "correct": 1,
+   "n": 1
+  },
+  "add a dark mode toggle": {
+   "correct": 2,
+   "n": 2
+  },
+  "add a docstring to {func}": {
+   "correct": 2,
+   "n": 2
+  },
+  "add a loading spinner to the {component}": {
+   "correct": 3,
+   "n": 3
+  },
+  "add a prop to the {component} for {feature_small}": {
+   "correct": 1,
+   "n": 1
+  },
+  "add a {lib} config file": {
+   "correct": 2,
+   "n": 2
+  },
+  "add comments to {file}": {
+   "correct": 1,
+   "n": 1
+  },
+  "add error handling to {func}": {
+   "correct": 1,
+   "n": 1
+  },
+  "add input validation to the {component}": {
+   "correct": 2,
+   "n": 2
+  },
+  "add logging to {func}": {
+   "correct": 2,
+   "n": 2
+  },
+  "add pagination to the orders endpoint": {
+   "correct": 4,
+   "n": 4
+  },
+  "add types to {file}": {
+   "correct": 4,
+   "n": 4
+  },
+  "any news on {lib} {ver}?": {
+   "correct": 3,
+   "n": 3
+  },
+  "are the tests passing?": {
+   "correct": 3,
+   "n": 3
+  },
+  "are there any hardcoded API keys in the repo?": {
+   "correct": 2,
+   "n": 2
+  },
+  "are there any known vulnerabilities in {lib} {ver}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "browse the {lib} docs for {topic}": {
+   "correct": 1,
+   "n": 1
+  },
+  "build the project": {
+   "correct": 1,
+   "n": 1
+  },
+  "bump the version to {ver}.0.0 in package.json": {
+   "correct": 2,
+   "n": 2
+  },
+  "can you add {feature} to the {component}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "can you check whether {cmd} passes?": {
+   "correct": 3,
+   "n": 3
+  },
+  "can you explain {concept} in {lang}?": {
+   "correct": 2,
+   "n": 2
+  },
+  "can you make the search bar debounce?": {
+   "correct": 1,
+   "n": 1
+  },
+  "can you run {cmd}?": {
+   "correct": 2,
+   "n": 2
+  },
+  "can you walk me through how {concept} works?": {
+   "correct": 2,
+   "n": 2
+  },
+  "cargo build --release": {
+   "correct": 2,
+   "n": 2
+  },
+  "change the button color to {color}": {
+   "correct": 2,
+   "n": 2
+  },
+  "change the port from 3000 to 8080": {
+   "correct": 1,
+   "n": 1
+  },
+  "change {func} to use {lib}": {
+   "correct": 1,
+   "n": 1
+  },
+  "check if {lib} {ver} has breaking changes": {
+   "correct": 2,
+   "n": 2
+  },
+  "check npm for a package that can {task}": {
+   "correct": 2,
+   "n": 2
+  },
+  "check the bundle size": {
+   "correct": 1,
+   "n": 1
+  },
+  "check the {service} status page": {
+   "correct": 3,
+   "n": 3
+  },
+  "commit the changes": {
+   "correct": 3,
+   "n": 3
+  },
+  "commit with message '{msg}'": {
+   "correct": 1,
+   "n": 1
+  },
+  "compare {lib} and {lib2} performance in 2026": {
+   "correct": 2,
+   "n": 2
+  },
+  "compare {p1} and {p2} for me": {
+   "correct": 2,
+   "n": 3
+  },
+  "convert {file} to TypeScript": {
+   "correct": 3,
+   "n": 3
+  },
+  "could you fix the {component} styling?": {
+   "correct": 3,
+   "n": 3
+  },
+  "create a GitHub Actions workflow that runs the tests": {
+   "correct": 2,
+   "n": 2
+  },
+  "create a new {component} component": {
+   "correct": 2,
+   "n": 2
+  },
+  "delete the old {component} component": {
+   "correct": 1,
+   "n": 1
+  },
+  "deploy to staging": {
+   "correct": 1,
+   "n": 1
+  },
+  "describe {concept} in one paragraph": {
+   "correct": 5,
+   "n": 5
+  },
+  "dig up the {lib} roadmap": {
+   "correct": 2,
+   "n": 2
+  },
+  "do the tests pass now?": {
+   "correct": 2,
+   "n": 2
+  },
+  "do we use {lib} anywhere?": {
+   "correct": 2,
+   "n": 2
+  },
+  "does `npm run build` pass?": {
+   "correct": 2,
+   "n": 2
+  },
+  "does it build?": {
+   "correct": 1,
+   "n": 1
+  },
+  "does {concept} matter for a small app?": {
+   "correct": 1,
+   "n": 1
+  },
+  "does {service} support webhooks?": {
+   "correct": 4,
+   "n": 4
+  },
+  "edit {file} to export {func}": {
+   "correct": 3,
+   "n": 3
+  },
+  "execute scripts/seed.py": {
+   "correct": 1,
+   "n": 1
+  },
+  "execute the migrations": {
+   "correct": 2,
+   "n": 2
+  },
+  "execute the notebook": {
+   "correct": 3,
+   "n": 3
+  },
+  "execute {cmd} and tell me what fails": {
+   "correct": 3,
+   "n": 3
+  },
+  "explain the search algorithm in binarySearch": {
+   "correct": 1,
+   "n": 1
+  },
+  "explain this code: ```{code}```": {
+   "correct": 1,
+   "n": 1
+  },
+  "explain what {func} does": {
+   "correct": 1,
+   "n": 1
+  },
+  "explain {concept}": {
+   "correct": 1,
+   "n": 1
+  },
+  "explain {concept} like I'm five": {
+   "correct": 3,
+   "n": 3
+  },
+  "extract the {component} into its own file": {
+   "correct": 3,
+   "n": 3
+  },
+  "fetch the docs at {url}": {
+   "correct": 1,
+   "n": 1
+  },
+  "find a library to {task}": {
+   "correct": 1,
+   "n": 1
+  },
+  "find a tutorial on {topic}": {
+   "correct": 1,
+   "n": 1
+  },
+  "find and fix the off-by-one error in {func}": {
+   "correct": 1,
+   "n": 1
+  },
+  "find benchmarks for {lib} vs {lib2}": {
+   "correct": 1,
+   "n": 2
+  },
+  "find duplicated code in utils": {
+   "correct": 2,
+   "n": 2
+  },
+  "find every {lib} import": {
+   "correct": 5,
+   "n": 5
+  },
+  "find examples of how to {task} on GitHub": {
+   "correct": 1,
+   "n": 1
+  },
+  "find out whether {lib} works with {lib2} now": {
+   "correct": 2,
+   "n": 2
+  },
+  "find recent papers on Tsetlin machines": {
+   "correct": 4,
+   "n": 4
+  },
+  "find references to {lib} in the code": {
+   "correct": 3,
+   "n": 3
+  },
+  "find the GitHub issue about {error}": {
+   "correct": 2,
+   "n": 2
+  },
+  "find the docs page for {lib}'s config options": {
+   "correct": 2,
+   "n": 2
+  },
+  "find the env vars the app reads": {
+   "correct": 2,
+   "n": 2
+  },
+  "find the file that handles routing": {
+   "correct": 2,
+   "n": 2
+  },
+  "find the official guide for {topic}": {
+   "correct": 1,
+   "n": 1
+  },
+  "find the tests folder": {
+   "correct": 1,
+   "n": 1
+  },
+  "find the {component} styles": {
+   "correct": 2,
+   "n": 2
+  },
+  "find where the API base url is set": {
+   "correct": 2,
+   "n": 2
+  },
+  "find {file}": {
+   "correct": 2,
+   "n": 2
+  },
+  "fire up the api": {
+   "correct": 1,
+   "n": 1
+  },
+  "fix the bug in {func}": {
+   "correct": 1,
+   "n": 1
+  },
+  "fix the failing test in {file}": {
+   "correct": 2,
+   "n": 2
+  },
+  "fix the typo in the header": {
+   "correct": 3,
+   "n": 3
+  },
+  "fix this: {error}": {
+   "correct": 2,
+   "n": 2
+  },
+  "fix {error} in {file}": {
+   "correct": 1,
+   "n": 1
+  },
+  "format all files with prettier": {
+   "correct": 1,
+   "n": 1
+  },
+  "generate the coverage report": {
+   "correct": 3,
+   "n": 3
+  },
+  "give me an example of {concept} in {lang}": {
+   "correct": 1,
+   "n": 1
+  },
+  "go read {url} and tell me the key points": {
+   "correct": 1,
+   "n": 1
+  },
+  "go test ./...": {
+   "correct": 2,
+   "n": 2
+  },
+  "good morning": {
+   "correct": 1,
+   "n": 1
+  },
+  "google how to {task}": {
+   "correct": 2,
+   "n": 2
+  },
+  "grep for {term}": {
+   "correct": 2,
+   "n": 2
+  },
+  "grep the repo for TODOs": {
+   "correct": 2,
+   "n": 2
+  },
+  "has {lib} fixed the {error} bug yet?": {
+   "correct": 4,
+   "n": 4
+  },
+  "hello there": {
+   "correct": 2,
+   "n": 2
+  },
+  "hi": {
+   "correct": 1,
+   "n": 1
+  },
+  "how do I center a div?": {
+   "correct": 2,
+   "n": 2
+  },
+  "how do I declare a constant in {lang}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "how do I edit a file in vim?": {
+   "correct": 3,
+   "n": 3
+  },
+  "how do I install packages with pip?": {
+   "correct": 1,
+   "n": 1
+  },
+  "how do I run tests in pytest?": {
+   "correct": 1,
+   "n": 1
+  },
+  "how do I search an array in JavaScript?": {
+   "correct": 2,
+   "n": 2
+  },
+  "how do {concept} work in {lang}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "how does {concept} work?": {
+   "correct": 2,
+   "n": 2
+  },
+  "how many files reference {func}?": {
+   "correct": 3,
+   "n": 3
+  },
+  "how should I name {component} props?": {
+   "correct": 2,
+   "n": 2
+  },
+  "how should I think about {concept}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "how would you approach {task_ing}?": {
+   "correct": 2,
+   "n": 2
+  },
+  "implement the TODO in {file}": {
+   "correct": 1,
+   "n": 1
+  },
+  "implement {feature}": {
+   "correct": 1,
+   "n": 1
+  },
+  "in which file is {func}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "install the dependencies": {
+   "correct": 1,
+   "n": 1
+  },
+  "install {pkg}": {
+   "correct": 1,
+   "n": 1
+  },
+  "is it bad practice to {practice}?": {
+   "correct": 3,
+   "n": 3
+  },
+  "is the server still running?": {
+   "correct": 1,
+   "n": 1
+  },
+  "is there a CVE for {lib} {ver}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "is there an official {lib} plugin for {lib2}?": {
+   "correct": 4,
+   "n": 4
+  },
+  "is this a good way to write it? ```{code}```": {
+   "correct": 1,
+   "n": 1
+  },
+  "is {code_short} valid {lang}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "is {func} used anywhere?": {
+   "correct": 1,
+   "n": 1
+  },
+  "is {lib} a framework or a library?": {
+   "correct": 1,
+   "n": 1
+  },
+  "is {lib} better than {lib2}?": {
+   "correct": 2,
+   "n": 2
+  },
+  "is {lib} still maintained?": {
+   "correct": 3,
+   "n": 3
+  },
+  "kill the process on port 3000": {
+   "correct": 2,
+   "n": 2
+  },
+  "list every place we call fetch": {
+   "correct": 2,
+   "n": 2
+  },
+  "list the React components we have": {
+   "correct": 2,
+   "n": 2
+  },
+  "list the files in src": {
+   "correct": 1,
+   "n": 1
+  },
+  "locate the config for {lib}": {
+   "correct": 2,
+   "n": 2
+  },
+  "locate where errors are logged": {
+   "correct": 1,
+   "n": 1
+  },
+  "locate {func}": {
+   "correct": 2,
+   "n": 2
+  },
+  "look for any usage of eval in the codebase": {
+   "correct": 2,
+   "n": 2
+  },
+  "look online for why {error} happens": {
+   "correct": 1,
+   "n": 1
+  },
+  "look up how {service} handles retries": {
+   "correct": 3,
+   "n": 3
+  },
+  "look up the {lib} migration guide from {ver} to {ver2}": {
+   "correct": 2,
+   "n": 2
+  },
+  "look up the {service} API rate limits": {
+   "correct": 3,
+   "n": 3
+  },
+  "look up {func} in the codebase": {
+   "correct": 1,
+   "n": 1
+  },
+  "look up {topic} online": {
+   "correct": 2,
+   "n": 2
+  },
+  "make the {component} responsive": {
+   "correct": 2,
+   "n": 2
+  },
+  "make {func} async": {
+   "correct": 2,
+   "n": 2
+  },
+  "make {func} generic": {
+   "correct": 1,
+   "n": 1
+  },
+  "make {func} return a Result instead of throwing": {
+   "correct": 1,
+   "n": 1
+  },
+  "makes sense, but why does {concept} need {concept2}?": {
+   "correct": 4,
+   "n": 4
+  },
+  "merge {branch} into main": {
+   "correct": 1,
+   "n": 1
+  },
+  "npm install {pkg}": {
+   "correct": 1,
+   "n": 1
+  },
+  "open a python shell": {
+   "correct": 2,
+   "n": 2
+  },
+  "open {file}": {
+   "correct": 1,
+   "n": 1
+  },
+  "optimize {func}": {
+   "correct": 1,
+   "n": 1
+  },
+  "patch {func} to avoid the race condition": {
+   "correct": 1,
+   "n": 1
+  },
+  "print {file}": {
+   "correct": 2,
+   "n": 2
+  },
+  "pull the latest from main": {
+   "correct": 1,
+   "n": 1
+  },
+  "put the API url in an env variable": {
+   "correct": 3,
+   "n": 3
+  },
+  "re-run the failing tests": {
+   "correct": 2,
+   "n": 2
+  },
+  "read the RFC for {protocol}": {
+   "correct": 1,
+   "n": 1
+  },
+  "refactor {file} to use {lib}": {
+   "correct": 1,
+   "n": 1
+  },
+  "remove the console.logs from src": {
+   "correct": 2,
+   "n": 2
+  },
+  "remove the unused imports in {file}": {
+   "correct": 2,
+   "n": 2
+  },
+  "replace moment with date-fns": {
+   "correct": 1,
+   "n": 1
+  },
+  "replace the any types in {file}": {
+   "correct": 2,
+   "n": 2
+  },
+  "research {topic}": {
+   "correct": 1,
+   "n": 1
+  },
+  "restart the server": {
+   "correct": 1,
+   "n": 1
+  },
+  "review this snippet ```{code}```": {
+   "correct": 3,
+   "n": 3
+  },
+  "rewrite {func} without recursion": {
+   "correct": 2,
+   "n": 2
+  },
+  "run `{cmd_text}` for me": {
+   "correct": 1,
+   "n": 1
+  },
+  "run make build": {
+   "correct": 1,
+   "n": 1
+  },
+  "run the app": {
+   "correct": 1,
+   "n": 1
+  },
+  "run the benchmarks and compare": {
+   "correct": 4,
+   "n": 4
+  },
+  "run the formatter": {
+   "correct": 2,
+   "n": 2
+  },
+  "run the linter": {
+   "correct": 1,
+   "n": 1
+  },
+  "run the seed script": {
+   "correct": 2,
+   "n": 2
+  },
+  "run the tests": {
+   "correct": 3,
+   "n": 3
+  },
+  "run the tests for {func}": {
+   "correct": 3,
+   "n": 3
+  },
+  "run through {file} and add type hints": {
+   "correct": 1,
+   "n": 1
+  },
+  "run tsc": {
+   "correct": 1,
+   "n": 1
+  },
+  "run {cmd}": {
+   "correct": 1,
+   "n": 1
+  },
+  "run {cmd} again": {
+   "correct": 2,
+   "n": 2
+  },
+  "run {file}": {
+   "correct": 2,
+   "n": 2
+  },
+  "search and replace foo with bar across the project": {
+   "correct": 3,
+   "n": 3
+  },
+  "search for '{term}' in the project": {
+   "correct": 3,
+   "n": 3
+  },
+  "search github for {lib} starter templates": {
+   "correct": 3,
+   "n": 3
+  },
+  "search our code for deprecated APIs": {
+   "correct": 2,
+   "n": 2
+  },
+  "search stack overflow for {error}": {
+   "correct": 1,
+   "n": 1
+  },
+  "search the codebase for {term}": {
+   "correct": 1,
+   "n": 1
+  },
+  "search the repo for {term}": {
+   "correct": 4,
+   "n": 4
+  },
+  "search the web for {topic}": {
+   "correct": 2,
+   "n": 2
+  },
+  "set up eslint and prettier in the repo": {
+   "correct": 1,
+   "n": 1
+  },
+  "should I use tabs or spaces?": {
+   "correct": 3,
+   "n": 3
+  },
+  "show me the folder structure": {
+   "correct": 2,
+   "n": 2
+  },
+  "show me the test output": {
+   "correct": 2,
+   "n": 2
+  },
+  "show me the tests for {func}": {
+   "correct": 1,
+   "n": 1
+  },
+  "show me where {func} is imported": {
+   "correct": 5,
+   "n": 5
+  },
+  "show me {file}": {
+   "correct": 1,
+   "n": 1
+  },
+  "spin up the containers": {
+   "correct": 2,
+   "n": 2
+  },
+  "start storybook": {
+   "correct": 2,
+   "n": 2
+  },
+  "start the backend": {
+   "correct": 1,
+   "n": 1
+  },
+  "stash my changes": {
+   "correct": 2,
+   "n": 2
+  },
+  "summarize what we did so far": {
+   "correct": 2,
+   "n": 2
+  },
+  "tail the server logs": {
+   "correct": 2,
+   "n": 2
+  },
+  "tell me a fun fact about {lang}": {
+   "correct": 1,
+   "n": 1
+  },
+  "test it": {
+   "correct": 2,
+   "n": 2
+  },
+  "the {component} looks broken on mobile, fix it": {
+   "correct": 2,
+   "n": 2
+  },
+  "time how long the build takes": {
+   "correct": 4,
+   "n": 4
+  },
+  "translate the UI strings to Norwegian": {
+   "correct": 1,
+   "n": 1
+  },
+  "try compiling with --strict": {
+   "correct": 1,
+   "n": 1
+  },
+  "try running it": {
+   "correct": 1,
+   "n": 1
+  },
+  "type-check the project": {
+   "correct": 1,
+   "n": 1
+  },
+  "uninstall {pkg}": {
+   "correct": 1,
+   "n": 1
+  },
+  "update the dependencies": {
+   "correct": 1,
+   "n": 1
+  },
+  "use zod for validation in {file}": {
+   "correct": 2,
+   "n": 2
+  },
+  "what are people using to {task} these days?": {
+   "correct": 2,
+   "n": 2
+  },
+  "what are the pros and cons of {lib}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "what are the {service} API limits these days?": {
+   "correct": 3,
+   "n": 3
+  },
+  "what are {concept}?": {
+   "correct": 2,
+   "n": 2
+  },
+  "what calls {func}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "what can you do?": {
+   "correct": 2,
+   "n": 2
+  },
+  "what do the {lib} maintainers recommend to {task}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "what does {url} say about {topic}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "what files are in the components folder?": {
+   "correct": 1,
+   "n": 1
+  },
+  "what happens when I run npm install?": {
+   "correct": 1,
+   "n": 1
+  },
+  "what is a monorepo and should I use one?": {
+   "correct": 6,
+   "n": 6
+  },
+  "what is the most recent stable release of {lib}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "what is the output of {code_short}?": {
+   "correct": 2,
+   "n": 2
+  },
+  "what is the purpose of {file}?": {
+   "correct": 2,
+   "n": 2
+  },
+  "what is {concept}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "what's a good name for a function that {does}?": {
+   "correct": 3,
+   "n": 3
+  },
+  "what's in {file}?": {
+   "correct": 0,
+   "n": 3
+  },
+  "what's new in {lang} this year?": {
+   "correct": 4,
+   "n": 4
+  },
+  "what's the browser support for {web_feature}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "what's the command to start the dev server?": {
+   "correct": 3,
+   "n": 3
+  },
+  "what's the community consensus on {lib} vs {lib2} in 2026?": {
+   "correct": 2,
+   "n": 2
+  },
+  "what's the current LTS version of Node?": {
+   "correct": 3,
+   "n": 3
+  },
+  "what's the difference between {p1} and {p2}?": {
+   "correct": 2,
+   "n": 2
+  },
+  "what's the output of `ls -la`?": {
+   "correct": 3,
+   "n": 3
+  },
+  "what's the point of {file}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "what's the pricing of {service}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "what's the recommended way to {task} according to the {lib} docs?": {
+   "correct": 3,
+   "n": 3
+  },
+  "what's the time complexity of binary search?": {
+   "correct": 3,
+   "n": 3
+  },
+  "what's trending in {lang} tooling right now?": {
+   "correct": 2,
+   "n": 2
+  },
+  "when should I use {p1} instead of {p2}?": {
+   "correct": 3,
+   "n": 3
+  },
+  "when was {lib} {ver} released?": {
+   "correct": 1,
+   "n": 1
+  },
+  "where are the routes declared?": {
+   "correct": 1,
+   "n": 1
+  },
+  "where did we put the {component}?": {
+   "correct": 4,
+   "n": 4
+  },
+  "where do we handle {feature_small}?": {
+   "correct": 2,
+   "n": 2
+  },
+  "where does the app read the PORT variable?": {
+   "correct": 1,
+   "n": 1
+  },
+  "where in the code do we call {service_short}?": {
+   "correct": 3,
+   "n": 3
+  },
+  "where is {func} defined?": {
+   "correct": 4,
+   "n": 4
+  },
+  "where's the {component} styled?": {
+   "correct": 2,
+   "n": 2
+  },
+  "which cloud is cheapest for {task_ing} today?": {
+   "correct": 2,
+   "n": 2
+  },
+  "which component renders the {component}?": {
+   "correct": 1,
+   "n": 1
+  },
+  "which files changed the most?": {
+   "correct": 2,
+   "n": 2
+  },
+  "which files import {lib}?": {
+   "correct": 3,
+   "n": 3
+  },
+  "which tests cover {func}?": {
+   "correct": 3,
+   "n": 3
+  },
+  "which {category} libraries are most popular right now?": {
+   "correct": 2,
+   "n": 2
+  },
+  "who are you?": {
+   "correct": 1,
+   "n": 1
+  },
+  "why am I getting {error}?": {
+   "correct": 3,
+   "n": 3
+  },
+  "why is my {component} re-rendering so often?": {
+   "correct": 1,
+   "n": 1
+  },
+  "why is {concept} considered hard?": {
+   "correct": 2,
+   "n": 2
+  },
+  "why would someone use git rebase?": {
+   "correct": 2,
+   "n": 2
+  },
+  "write a migration that adds an email column": {
+   "correct": 5,
+   "n": 5
+  },
+  "write a script that runs the tests": {
+   "correct": 3,
+   "n": 3
+  },
+  "write a test for {func} that covers empty input": {
+   "correct": 1,
+   "n": 1
+  },
+  "write the missing tests": {
+   "correct": 2,
+   "n": 2
+  },
+  "write unit tests for {func}": {
+   "correct": 3,
+   "n": 3
+  },
+  "yarn add {pkg}": {
+   "correct": 0,
+   "n": 2
+  }
+ },
+ "heldOutErrors": [
+  {
+   "id": "r00097",
+   "label": "answer",
+   "predicted": "run",
+   "scores": {
+    "answer": -73,
+    "edit": -693,
+    "run": 590,
+    "search": -791,
+    "research": -1030
+   },
+   "input": "compare merge and rebase for me - thanks!"
+  },
+  {
+   "id": "r01109",
+   "label": "run",
+   "predicted": "edit",
+   "scores": {
+    "answer": -975,
+    "edit": 1149,
+    "run": -634,
+    "search": -1454,
+    "research": -864
+   },
+   "input": "can you yarn add zod please"
+  },
+  {
+   "id": "r01403",
+   "label": "run",
+   "predicted": "edit",
+   "scores": {
+    "answer": -975,
+    "edit": 1149,
+    "run": -634,
+    "search": -1454,
+    "research": -864
+   },
+   "input": "next, yarn add serde thx"
+  },
+  {
+   "id": "r01822",
+   "label": "search",
+   "predicted": "answer",
+   "scores": {
+    "answer": 258,
+    "edit": -639,
+    "run": -1277,
+    "search": -335,
+    "research": -283
+   },
+   "input": "what's in package.json? for me"
+  },
+  {
+   "id": "r01855",
+   "label": "search",
+   "predicted": "answer",
+   "scores": {
+    "answer": 83,
+    "edit": -936,
+    "run": -1398,
+    "search": -106,
+    "research": -180
+   },
+   "input": "what's in models/user.py? - thanks!"
+  },
+  {
+   "id": "r01856",
+   "label": "search",
+   "predicted": "answer",
+   "scores": {
+    "answer": 125,
+    "edit": -897,
+    "run": -1398,
+    "search": -59,
+    "research": -315
+   },
+   "input": "what's in styles.css? — cheers"
+  },
+  {
+   "id": "r02366",
+   "label": "research",
+   "predicted": "search",
+   "scores": {
+    "answer": -1093,
+    "edit": -503,
+    "run": -1249,
+    "search": 737,
+    "research": -327
+   },
+   "input": "Can you find benchamrks for Vue vs tRPC"
+  }
+ ],
+ "challengeErrors": [
+  {
+   "id": "rc003",
+   "label": "answer",
+   "predicted": "edit",
+   "input": "is it safe to store JWTs in localStorage?"
+  },
+  {
+   "id": "rc016",
+   "label": "answer",
+   "predicted": "run",
+   "input": "what is the difference between npm install and npm ci?"
+  },
+  {
+   "id": "rc022",
+   "label": "answer",
+   "predicted": "research",
+   "input": "thank you, that fixed it"
+  },
+  {
+   "id": "rc076",
+   "label": "search",
+   "predicted": "answer",
+   "input": "is there a helper for formatting currency already?"
+  },
+  {
+   "id": "rc105",
+   "label": "research",
+   "predicted": "search",
+   "input": "find a good library for parsing CSV in Rust"
+  }
+ ],
+ "heaviestClauses": [
+  {
+   "id": 62,
+   "weight": 85,
+   "rule": "answer because: NOT \"the\" AND NOT mentions a CLI tool AND NOT asks for outside / fresh information AND NOT mentions a camelCase identifier AND NOT mentions a file path AND NOT \"add\" (+33 more conditions)"
+  },
+  {
+   "id": 207,
+   "weight": 84,
+   "rule": "run because: NOT uses a locate/show word AND NOT uses a change-the-code word AND NOT \"in\" AND NOT \"what\" AND NOT \"me\" AND NOT mentions a version (+35 more conditions)"
+  },
+  {
+   "id": 6,
+   "weight": 80,
+   "rule": "answer because: NOT uses a change-the-code word AND NOT asks for outside / fresh information AND NOT mentions a CLI tool AND NOT \"in\" AND NOT \"run\" AND NOT mentions a camelCase identifier (+44 more conditions)"
+  },
+  {
+   "id": 276,
+   "weight": 80,
+   "rule": "run because: NOT uses a locate/show word AND NOT \"to\" AND NOT \"in\" AND NOT \"what\" AND NOT \"so\" AND does not start with \"whats\" (+46 more conditions)"
+  },
+  {
+   "id": 221,
+   "weight": 78,
+   "rule": "run because: NOT \"in\" AND NOT asks for outside / fresh information AND NOT mentions a camelCase identifier AND NOT \"is\" AND NOT mentions a CLI tool AND NOT \"add\" (+50 more conditions)"
+  },
+  {
+   "id": 323,
+   "weight": 77,
+   "rule": "search because: NOT uses a change-the-code word AND NOT \"for\" AND NOT \"what\" AND NOT \"run\" AND NOT \"to\" AND NOT \"how\" (+52 more conditions)"
+  },
+  {
+   "id": 215,
+   "weight": 75,
+   "rule": "run because: NOT asks a question (?) AND NOT asks for outside / fresh information AND NOT uses an explain word AND does not start with \"find\" AND NOT \"add\" AND NOT \"in the\" (+45 more conditions)"
+  },
+  {
+   "id": 485,
+   "weight": 75,
+   "rule": "research because: NOT uses an execute word AND NOT \"a\" AND NOT \"is\" AND NOT \"in the\" AND does not start with \"add\" AND NOT \"of\" (+59 more conditions)"
+  },
+  {
+   "id": 32,
+   "weight": 72,
+   "rule": "answer because: uses an explain word AND NOT \"version\" AND NOT \"days\" AND NOT \"on\" AND NOT \"https\" AND NOT \"browser\" (+5 more conditions)"
+  },
+  {
+   "id": 286,
+   "weight": 72,
+   "rule": "run because: NOT uses an explain word AND NOT uses a change-the-code word AND NOT uses a locate/show word AND NOT \"up\" AND NOT \"a\" AND NOT \"in\" (+18 more conditions)"
+  },
+  {
+   "id": 294,
+   "weight": 72,
+   "rule": "run because: NOT uses an explain word AND NOT \"for\" AND NOT \"to\" AND NOT \"in\" AND NOT mentions a file path AND NOT \"where\" (+45 more conditions)"
+  },
+  {
+   "id": 369,
+   "weight": 72,
+   "rule": "search because: uses a locate/show word AND NOT asks for outside / fresh information AND NOT \"search\" AND NOT \"guide\" AND NOT \"one\" AND NOT \"why\" (+2 more conditions)"
+  },
+  {
+   "id": 381,
+   "weight": 72,
+   "rule": "search because: NOT uses an explain word AND NOT uses a change-the-code word AND NOT uses an execute word AND NOT asks for outside / fresh information AND NOT mentions a version AND NOT \"or\" (+24 more conditions)"
+  },
+  {
+   "id": 280,
+   "weight": 71,
+   "rule": "run because: NOT uses a locate/show word AND NOT uses a change-the-code word AND NOT asks for outside / fresh information AND NOT \"a\" AND NOT \"what\" AND NOT \"how\" (+27 more conditions)"
+  },
+  {
+   "id": 347,
+   "weight": 71,
+   "rule": "search because: NOT uses an explain word AND NOT uses a change-the-code word AND NOT asks for outside / fresh information AND NOT mentions a CLI tool AND NOT \"run\" AND NOT \"server\" (+38 more conditions)"
+  },
+  {
+   "id": 76,
+   "weight": 70,
+   "rule": "answer because: NOT uses a change-the-code word AND NOT uses an execute word AND NOT asks for outside / fresh information AND NOT \"in the\" AND NOT mentions a file path AND NOT \"where\" (+37 more conditions)"
+  },
+  {
+   "id": 257,
+   "weight": 70,
+   "rule": "run because: NOT uses an explain word AND NOT uses a locate/show word AND NOT \"for\" AND NOT \"in\" AND NOT \"add\" AND NOT mentions a camelCase identifier (+29 more conditions)"
+  },
+  {
+   "id": 473,
+   "weight": 70,
+   "rule": "research because: NOT uses an execute word AND NOT \"is\" AND NOT mentions a CLI tool AND does not start with \"add\" AND NOT \"i\" AND NOT mentions a file path (+53 more conditions)"
+  },
+  {
+   "id": 68,
+   "weight": 69,
+   "rule": "answer because: NOT uses a change-the-code word AND NOT uses a locate/show word AND NOT uses an execute word AND NOT \"in\" AND NOT \"whats the\" AND NOT \"check\" (+19 more conditions)"
+  },
+  {
+   "id": 241,
+   "weight": 69,
+   "rule": "run because: NOT \"question\" AND NOT \"do\" AND NOT \"up\" AND does not start with \"search\" AND NOT quotes an error AND NOT \"on\" (+69 more conditions)"
+  },
+  {
+   "id": 126,
+   "weight": 68,
+   "rule": "edit because: NOT uses an explain word AND NOT uses a locate/show word AND NOT \"run\" AND NOT \"is\" AND NOT mentions a version AND NOT is very short (3 words or fewer) (+40 more conditions)"
+  },
+  {
+   "id": 306,
+   "weight": 68,
+   "rule": "not search because: NOT \"in\" AND does not start with \"show\" AND does not start with \"which\" AND NOT \"do we\" AND does not start with \"list\" AND NOT \"config\" (+20 more conditions)"
+  },
+  {
+   "id": 60,
+   "weight": 66,
+   "rule": "answer because: NOT uses a locate/show word AND NOT asks for outside / fresh information AND NOT \"for\" AND does not start with \"add\" AND NOT mentions a file path AND NOT \"up\" (+37 more conditions)"
+  },
+  {
+   "id": 85,
+   "weight": 66,
+   "rule": "not answer because: NOT \"do\" AND NOT \"for\" AND NOT contains inline code AND NOT \"whats the\" AND NOT \"good\" AND NOT \"hmm\" (+18 more conditions)"
+  },
+  {
+   "id": 217,
+   "weight": 66,
+   "rule": "run because: NOT asks a question (?) AND NOT \"in\" AND NOT asks for outside / fresh information AND NOT mentions a camelCase identifier AND NOT \"add\" AND NOT \"find\" (+36 more conditions)"
+  }
+ ]
+}
