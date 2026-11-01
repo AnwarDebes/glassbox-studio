@@ -48,16 +48,21 @@ test('demo replay: guarded commands, approved edit, passing tests, verified ledg
   // command went to the guard.
   const accept = await waitForReview(page);
   await expect(page.locator('.tool-card', { hasText: 'Run test/config.test.js' }).first()).toContainText(/tests pass/);
+  // rm -rf ~/.cache is blocked before it runs, with the clauses that decided it.
   const cacheCard = page.locator('.tool-card', { hasText: 'rm -rf ~/.cache' }).first();
-  await expect(cacheCard).toBeVisible();
-  await expect(cacheCard.locator('.pill').first()).toBeVisible();
+  await expect(cacheCard).toHaveClass(/d-block/);
+  await expect(cacheCard.locator('.tool-status')).toHaveText('Not run');
+  await expect(cacheCard.locator('.evidence .ev-clause').first()).toBeVisible();
   await expect(page.locator('.tab.is-review')).toBeVisible();
   await accept.click();
 
   // Tests pass after the fix, the force push is judged, and the ledger verifies.
   await finishDemo(page);
   await expect(page.locator('.tool-card', { hasText: 'Run test/config.test.js' }).last()).toContainText('3/3 tests pass');
-  await expect(page.locator('.tool-card', { hasText: 'git push --force' }).first()).toBeVisible();
+  // So is git push --force.
+  const pushCard = page.locator('.tool-card', { hasText: 'git push --force' }).first();
+  await expect(pushCard).toHaveClass(/d-block/);
+  await expect(pushCard.locator('.evidence .ev-clause').first()).toBeVisible();
 
   // The edited file is open.
   await expect(page.locator('.tab.active')).toContainText('config.js');
@@ -82,7 +87,20 @@ test('phone layout is a clean read-only view', async ({ browser }) => {
   await page.getByRole('tab', { name: 'Files' }).click();
   await page.getByRole('button', { name: 'src/config.js' }).click();
   await expect(page.locator('.phone-code')).toContainText('parseConfig');
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  const fits = () => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
+  expect(await fits()).toBe(true);
+
+  // With the demo's tool cards and an expanded decision, nothing spills sideways.
+  await page.getByRole('tab', { name: 'Agent' }).click();
+  await page.getByRole('button', { name: /Play the demo|Replay the demo/ }).click();
+  const cacheCard = page.locator('.tool-card', { hasText: 'rm -rf ~/.cache' }).first();
+  await expect(cacheCard).toBeVisible({ timeout: 120_000 });
+  await expect(cacheCard.locator('.tool-status')).not.toHaveText('Checking');
+  expect(await fits()).toBe(true);
+  await page.getByRole('tab', { name: 'Decisions' }).click();
+  await page.locator('.phone-dec', { hasText: 'rm -rf' }).first().click();
+  await expect(page.locator('.phone-decisions .evidence')).toBeVisible();
+  expect(await fits()).toBe(true);
   expect(errors).toEqual([]);
   await context.close();
 });

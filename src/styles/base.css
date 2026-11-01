@@ -542,6 +542,7 @@ dialog.sheet[open] {
   min-width: 0;
 }
 .truncate {
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

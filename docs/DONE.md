@@ -33,6 +33,14 @@
 - **Composer switches**: Glassbox guard, Show its work, Ask before every edit,
   Research mode (plan, search, read, answer with clickable file:line citations).
   Compute meter: LLM tokens, logic operations and the estimated savings factor.
+- **Decision layer**: the studio uses the real Tsetlin Machine guard and router
+  from `src/glassbox` (models in `public/models`, loaded from
+  `BASE_URL + 'models/'`); the temporary stub is gone. The model list shows the
+  prototype figures on synthetic data: guard 99.2% held-out (n = 1,074), 97.7% on
+  the challenge set (n = 129), 180 clauses over 355 features, 101 KiB; router
+  98.7% held-out (n = 520), 95.8% challenge (n = 120), 497 clauses over 628
+  features, 118 KiB. Compute comparisons use the layer's `savings()` defaults
+  (a 1B-parameter judge reading a 300-token prompt).
 - **Models**: WebLLM in a worker (Qwen2.5-Coder 1.5B and 3B, Llama 3.2 3B,
   Phi 3.5 mini; ids checked against web-llm 0.2.87's prebuiltAppConfig) with
   download size, GPU memory, cache status and a WebGPU check; bring your own key
@@ -56,15 +64,30 @@ npm run preview              # http://localhost:4173/glassbox-studio/
 npx playwright install chromium
 npm run test:e2e             # all end-to-end tests
 npm run screenshots          # refresh docs/*.png
+node --experimental-strip-types src/glassbox/__tests__/run.mjs   # decision layer tests
 ```
 
 ## Verification
 
-- `npm run build`: passes with zero TypeScript errors.
-- Playwright against `npm run preview`: demo flow, phone view, mocked-provider
-  agent loop (native tools and JSON protocol), zip import, model picker,
-  keyboard path, and axe accessibility audits (WCAG 2.1 A and AA) in both
-  themes. Every flow asserts that the console stays free of errors.
+- `npm run build`: passes with zero TypeScript errors (app, config, tests and
+  scripts are all type-checked), then builds to `dist/`.
+- `npm run test:e2e`: 17 Playwright tests, all passing against `npm run preview`
+  with the real decision layer (`src/glassbox`, models in `public/models`):
+  - the landing page and its live guard playground;
+  - the full demo: router decision, failing tests in the sandbox, `rm -rf ~/.cache`
+    blocked with evidence and a repair taken, the edit approved in review, 3 of 3
+    tests passing, `git push --force` blocked, the ledger verified, and the
+    tamper test failing as it should;
+  - the phone view (read-only, no horizontal overflow with decisions expanded);
+  - the real agent loop against a mocked OpenAI-compatible provider, through
+    native tool calling and through the JSON protocol (including a retry after
+    an invalid reply and an approved edit);
+  - zip import, the model picker, and the keyboard path from the skip link;
+  - axe audits (WCAG 2.1 A and AA, including colour contrast) of the landing page,
+    the empty studio and the studio mid-demo, in dark and light themes;
+  - the README screenshots.
+  The demo, phone, agent and picker tests also assert that the browser console
+  stays free of errors.
 
 ## Screenshots
 
@@ -89,3 +112,7 @@ npm run screenshots          # refresh docs/*.png
 - Opening a local folder needs the File System Access API (Chrome and Edge). Other
   browsers can import and export .zip files instead.
 - Compute comparisons with an LLM judge are estimates, labelled as such in the UI.
+- The glassbox models are trained on synthetic data (see glassbox/README.md); the
+  studio shows their decisions and evidence as they are. The decision layer was
+  still being retrained while this was built, so exact margins and clause ids in
+  the screenshots may differ from a later build.

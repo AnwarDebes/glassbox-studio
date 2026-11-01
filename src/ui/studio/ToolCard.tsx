@@ -5,7 +5,7 @@ import { useSettings } from '../../state/settings';
 import { decide, revertEdit, runRepair } from '../../agent/runtime';
 import { describeCall } from '../../agent/tools';
 import { workspace } from '../../workspace/store';
-import { DecisionPill, Evidence } from '../Evidence';
+import { DecisionPill, Evidence, ruleSummary, tellingClause } from '../Evidence';
 import { DiffView } from '../DiffView';
 import { Icon, type IconName } from '../Icon';
 import { toast } from '../../state/ui';
@@ -35,8 +35,8 @@ const STATUS_TEXT: Record<ToolItem['status'], string> = {
 function topRule(item: ToolItem): string | null {
   const g = item.guard;
   if (!g) return null;
-  const votes = g.evidence.filter((e) => e.cls === g.decision && e.polarity > 0).sort((a, b) => b.weight - a.weight);
-  return votes[0]?.rule ?? null;
+  const c = tellingClause(g);
+  return c ? ruleSummary(c, 2) : null;
 }
 
 export function ToolCard({ item }: { item: ToolItem }) {

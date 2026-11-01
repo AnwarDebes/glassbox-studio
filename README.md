@@ -112,8 +112,16 @@ happened, and the cost is a few thousand logic operations instead of the billion
 an LLM judge would need. Accuracy figures come from examples held out of training;
 compute comparisons are estimates.
 
-The models are trained offline and shipped as small JSON files in `public/models/`.
-Training, features and evaluation are documented in [glassbox/README.md](glassbox/README.md).
+| Model | Task | Held-out accuracy | Challenge set | Size |
+| --- | --- | --- | --- | --- |
+| Glassbox Guard | allow, ask or block a tool call | 99.2% (n = 1,074) | 97.7% (n = 129) | 180 clauses over 355 features, 101 KiB |
+| Glassbox Router | answer, edit, run, search or research | 98.7% (n = 520) | 95.8% (n = 120) | 497 clauses over 628 features, 118 KiB |
+
+These are prototype figures on synthetic data. The models are trained offline on
+examples generated against an explicit labelling policy, the challenge sets are
+small and hand-written, and the files ship in `public/models/`. They are a
+prototype: they have not been evaluated on logs of real agent sessions. Training,
+features and evaluation are documented in [glassbox/README.md](glassbox/README.md).
 
 ## Privacy
 

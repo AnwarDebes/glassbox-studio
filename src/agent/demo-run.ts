@@ -26,7 +26,8 @@ export async function startDemo() {
   useSettings.setState({ guard: true, showWork: true, askEdits: true, research: false, model: { kind: 'demo' } });
   session.setDemo({ active: true, finished: false });
   await ensureGlassbox();
-  const ctx = await runTurn(DEMO_PROMPT, { provider: getDemoProvider() });
+  // The route is computed and shown live, but the scripted session stays a tool loop.
+  const ctx = await runTurn(DEMO_PROMPT, { provider: getDemoProvider(), autoResearch: false });
   if (!ctx || !useSession.getState().demo.active) return;
   pixie.show('guarding', 'Verifying the ledger');
   const v = await verifyLedger();

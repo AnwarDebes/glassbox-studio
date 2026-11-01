@@ -100,6 +100,12 @@ export async function researchTurn(ctx: TurnContext, userItem: UserItem) {
     if (/^(BLOCKED|The user rejected|No file named)/.test(text)) continue;
     contexts.push(`FILE ${path}\n${text}`);
   }
+  // Keep the evidence inside the model's context window, with room to answer.
+  const budget = small ? 5200 : 40_000;
+  const perFile = Math.floor(budget / Math.max(1, contexts.length));
+  for (let i = 0; i < contexts.length; i++) {
+    if (contexts[i].length > perFile) contexts[i] = `${contexts[i].slice(0, perFile)}\n…(rest of the file omitted)`;
+  }
   setStep(2, { status: 'done' });
 
   // Answer.
@@ -119,7 +125,7 @@ export async function researchTurn(ctx: TurnContext, userItem: UserItem) {
     messages,
     signal: ctx.signal,
     temperature: 0.2,
-    maxTokens: 900,
+    maxTokens: small ? 700 : 900,
     purpose: 'research-answer',
     onDelta: (d) => session.appendText(answer.id, d),
   });

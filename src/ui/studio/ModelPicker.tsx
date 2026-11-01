@@ -3,13 +3,13 @@ import { guard as runGuard, route as runRoute, savings, type ModelCard } from '.
 import { closePicker, useUi, type PickerTab } from '../../state/ui';
 import { setSetting, useSettings, type ProviderConfig } from '../../state/settings';
 import { getKey, isRemembered, setKey, forgetKey } from '../../state/keys';
-import { ensureGlassbox, useGlassbox } from '../../agent/glassbox';
+import { ensureGlassbox, kib, useGlassbox } from '../../agent/glassbox';
 import { checkWebGpu, LOCAL_MODELS, type GpuReport, type LocalModel } from '../../agent/providers/webllm-models';
 import { isLoaded, isModelCached, loadLocalModel } from '../../agent/providers/webllm';
 import { PRESETS, PRESET_BY_ID, hostOf, type ProviderPreset } from '../../agent/providers/presets';
 import { fetchModels } from '../../agent/providers/openai';
 import { LINKS } from '../../app/router';
-import { compact, factor, pct } from '../format';
+import { compact, pct } from '../format';
 import { Icon } from '../Icon';
 
 const TABS: Array<{ id: PickerTab; label: string }> = [
@@ -323,7 +323,7 @@ function sampleCompute(card: ModelCard) {
 }
 
 function GlassboxTab() {
-  const { status, cards, error } = useGlassbox();
+  const { status, cards, stats, error } = useGlassbox();
   const guardOn = useSettings((s) => s.guard);
   useEffect(() => {
     void ensureGlassbox();
@@ -333,7 +333,7 @@ function GlassboxTab() {
     <div className="picker-pane">
       <p className="picker-note">
         Two small Tsetlin Machine models make the agent's decisions. They are sets of readable logic clauses, not neural networks: every decision lists the clauses that fired. They run on
-        your CPU in under a millisecond.{' '}
+        your CPU in about a millisecond or less.{' '}
         <a href={LINKS.decisionLayer} target="_blank" rel="noreferrer noopener">
           How the glassbox layer works
         </a>
@@ -354,9 +354,16 @@ function GlassboxTab() {
           The glassbox models could not be loaded: {error}
         </p>
       ) : null}
+      {cards.length ? (
+        <p className="faint gb-caveat">
+          Prototype figures on synthetic data: accuracy on examples held out from training, and on a small hand-written challenge set. The models have not been evaluated on real agent
+          sessions.
+        </p>
+      ) : null}
       <div className="gb-grid">
         {cards.map((c) => {
           const est = sampleCompute(c);
+          const st = stats[c.id];
           return (
             <article key={c.id} className="gb-card model-tinted" style={{ ['--model' as string]: c.color }}>
               <header>
@@ -373,16 +380,27 @@ function GlassboxTab() {
               </div>
               <dl className="model-facts">
                 <div>
+                  <dt>Held-out accuracy</dt>
+                  <dd>{c.heldOutSize ? `${pct(c.heldOutAccuracy)} on ${c.heldOutSize.toLocaleString()} examples` : 'not measured yet'}</dd>
+                </div>
+                <div>
+                  <dt>Challenge set</dt>
+                  <dd>{st?.challenge ? `${pct(st.challenge.accuracy)} on ${st.challenge.n.toLocaleString()} hand-written examples` : 'not measured'}</dd>
+                </div>
+                <div>
                   <dt>Clauses</dt>
-                  <dd>{c.clauses.toLocaleString()}</dd>
+                  <dd>
+                    {c.clauses.toLocaleString()}
+                    {st ? ` over ${st.features.toLocaleString()} features` : ''}
+                  </dd>
+                </div>
+                <div>
+                  <dt>Model file</dt>
+                  <dd>{st ? kib(st.bytes) : 'unknown'}</dd>
                 </div>
                 <div>
                   <dt>Literals per clause</dt>
                   <dd>{c.avgLiterals.toFixed(1)} on average</dd>
-                </div>
-                <div>
-                  <dt>Held-out accuracy</dt>
-                  <dd>{c.heldOutSize ? `${pct(c.heldOutAccuracy)} on ${c.heldOutSize.toLocaleString()} examples` : 'not measured yet'}</dd>
                 </div>
                 <div>
                   <dt>Trained</dt>
@@ -391,7 +409,7 @@ function GlassboxTab() {
               </dl>
               {est ? (
                 <p className="gb-compute">
-                  About {compact(est.ops)} logic operations per decision, roughly {factor(est.s.factor)} less compute than an LLM judge. <span className="faint">Estimate.</span>
+                  About {compact(est.ops)} logic operations per decision: {est.s.text}. <span className="faint">Estimate.</span>
                 </p>
               ) : null}
               {c.notes ? <p className="faint gb-notes">{c.notes}</p> : null}

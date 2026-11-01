@@ -513,7 +513,7 @@ async function jsonLoop(ctx: TurnContext, userItem: UserItem, carried?: ChatMess
       jsonSchema: ACTION_SCHEMA,
       signal: ctx.signal,
       temperature: 0.1,
-      maxTokens: 1536,
+      maxTokens: ctx.provider.contextTokens <= 4096 ? 1100 : 1536,
       onDelta: (d) => {
         live.raw += d;
         session.update<AssistantItem>(aside.id, { text: partialField(live.raw, 'thought') });
@@ -560,8 +560,10 @@ async function jsonLoop(ctx: TurnContext, userItem: UserItem, carried?: ChatMess
 
 /** Keep small models inside their context window by shortening old results. */
 function trimJsonContext(messages: ChatMessage[], contextTokens: number) {
-  const limit = contextTokens * 0.7;
-  const size = () => messages.reduce((n, m) => n + (typeof m.content === 'string' ? m.content.length / 4 : 0), 0);
+  // Code tokenises denser than prose, so count about 3.2 characters per token,
+  // and leave room for the reply.
+  const limit = contextTokens * (contextTokens <= 4096 ? 0.55 : 0.7);
+  const size = () => messages.reduce((n, m) => n + (typeof m.content === 'string' ? m.content.length / 3.2 : 0), 0);
   for (let i = 2; i < messages.length - 2 && size() > limit; i++) {
     const m = messages[i];
     if (m.role === 'user' && m.content.startsWith('Result of') && m.content.length > 300) {
@@ -590,6 +592,8 @@ export function stop() {
 export interface TurnOptions {
   provider?: LlmProvider;
   forceResearch?: boolean;
+  /** Let the router switch research mode on by itself (default true). */
+  autoResearch?: boolean;
 }
 
 export async function runTurn(prompt: string, opts: TurnOptions = {}): Promise<TurnContext | null> {
@@ -622,8 +626,8 @@ export async function runTurn(prompt: string, opts: TurnOptions = {}): Promise<T
     if (r) {
       ctx.route = r;
       account(r.compute, r.ms);
-      const auto = !research && r.intent === 'research';
-      research = research || r.intent === 'research';
+      const auto = !research && r.intent === 'research' && opts.autoResearch !== false;
+      research = research || auto;
       const routeItem = session.add<RouteItem>({ kind: 'route', id: uid('r'), result: r, research, auto });
       const entry = await appendLedger('route', `Routed as ${r.intent}`, { prompt: text, intent: r.intent, scores: r.scores, margin: r.margin, clauses: r.evidence.map((e) => e.id), features: r.features, compute: r.compute, modelId: r.modelId });
       session.timeline({ id: uid('e'), at: Date.now(), kind: 'route', label: `Routed as ${r.intent}`, outcome: r.intent, itemId: routeItem.id, ledgerSeq: entry.seq });

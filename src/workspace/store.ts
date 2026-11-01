@@ -83,6 +83,10 @@ export const workspace = {
   },
 
   loadFiles(name: string, kind: WorkspaceKind, files: Record<string, string>, handle: FileSystemDirectoryHandle | null = null) {
+    // Small projects open with their top-level folders expanded.
+    const paths = Object.keys(files);
+    const expanded: Record<string, boolean> = {};
+    if (paths.length <= 200) for (const p of paths) if (p.includes('/')) expanded[p.split('/')[0]] = true;
     set({
       name,
       kind,
@@ -93,7 +97,7 @@ export const workspace = {
       tabs: [],
       active: null,
       reveal: null,
-      expanded: {},
+      expanded,
     });
     if (handle) void save('workspace-handle', handle);
     else void remove('workspace-handle');

@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import './landing.css';
 import { guard, savings, type GuardResult } from '../../app/gb';
-import { ensureGlassbox, useGlassbox } from '../../agent/glassbox';
+import { ensureGlassbox, kib, useGlassbox } from '../../agent/glassbox';
 import { usePwa, promptInstall } from '../../app/pwa';
 import { LINKS, navigate } from '../../app/router';
 import { PixieCanvas } from '../../pixie/PixieCanvas';
 import type { PixieState } from '../../pixie/renderer';
-import { DecisionPill } from '../Evidence';
+import { DecisionPill, ruleSummary, tellingClause } from '../Evidence';
 import { compact, factor, margin as fmtMargin, ms, pct } from '../format';
 import { Icon } from '../Icon';
 import { Logo } from '../Logo';
@@ -43,7 +43,10 @@ function Playground() {
     return () => clearTimeout(t);
   }, [command, status]);
 
-  const clauses = result ? result.evidence.filter((e) => e.cls === result.decision && e.polarity > 0).sort((a, b) => b.weight - a.weight).slice(0, 3) : [];
+  // The most telling clause first, then the next heaviest one for the same class.
+  const best = result ? tellingClause(result) : undefined;
+  const clauses =
+    result && best ? [best, ...result.evidence.filter((e) => e !== best && e.cls === result.decision && e.polarity > 0).sort((a, b) => b.weight - a.weight)].slice(0, 2) : [];
   const s = result ? savings(result.compute) : null;
 
   return (
@@ -85,7 +88,7 @@ function Playground() {
               {clauses.length ? (
                 <ul className="pg-clauses">
                   {clauses.map((c) => (
-                    <li key={c.id}>{c.rule}</li>
+                    <li key={c.id}>{ruleSummary(c, 3)}</li>
                   ))}
                 </ul>
               ) : (
@@ -138,6 +141,7 @@ function InstallButton() {
 
 function Models() {
   const cards = useGlassbox((s) => s.cards);
+  const stats = useGlassbox((s) => s.stats);
   if (!cards.length) return null;
   return (
     <section className="section" aria-labelledby="models-title">
@@ -145,28 +149,35 @@ function Models() {
         Two small models make the decisions
       </h2>
       <p className="section-lede">
-        Tsetlin Machines learn propositional logic: plain AND-clauses over readable features. That is why every decision can show exactly which rules fired, and why it costs a few
-        thousand operations instead of billions.
+        Tsetlin Machines learn propositional logic: plain AND-clauses over readable features. That is why every decision can show exactly which rules fired, and why it costs thousands of
+        operations instead of billions.
       </p>
       <div className="lp-models">
-        {cards.map((c) => (
-          <article key={c.id} className="lp-model pane model-tinted" style={{ ['--model' as string]: c.color }}>
-            <h3>{c.name}</h3>
-            <p className="muted">{c.task}</p>
-            <p className="lp-model-stats">
-              <span>
-                <strong>{c.clauses.toLocaleString()}</strong> clauses
-              </span>
-              <span>
-                <strong>{c.heldOutSize ? pct(c.heldOutAccuracy) : 'n/a'}</strong> held-out accuracy
-              </span>
-            </p>
-            <p className="faint lp-model-classes">{c.classes.join(', ')}</p>
-          </article>
-        ))}
+        {cards.map((c) => {
+          const st = stats[c.id];
+          return (
+            <article key={c.id} className="lp-model pane model-tinted" style={{ ['--model' as string]: c.color }}>
+              <h3>{c.name}</h3>
+              <p className="muted">{c.task}</p>
+              <p className="lp-model-stats">
+                <span>
+                  <strong>{c.heldOutSize ? pct(c.heldOutAccuracy) : 'n/a'}</strong> on {c.heldOutSize.toLocaleString()} held-out examples
+                </span>
+                {st?.challenge ? (
+                  <span>
+                    <strong>{pct(st.challenge.accuracy)}</strong> on a {st.challenge.n.toLocaleString()}-example hand-written challenge set
+                  </span>
+                ) : null}
+              </p>
+              <p className="faint lp-model-classes">
+                {c.clauses.toLocaleString()} clauses{st ? ` over ${st.features.toLocaleString()} features, ${kib(st.bytes)}` : ''}. Classes: {c.classes.join(', ')}.
+              </p>
+            </article>
+          );
+        })}
       </div>
       <p className="faint">
-        Accuracy is measured on examples held out from training. Compute comparisons are estimates.{' '}
+        Prototype figures on synthetic data: both models are trained on generated examples and have not yet been evaluated on real agent sessions. Compute comparisons are estimates.{' '}
         <a href={LINKS.decisionLayer} target="_blank" rel="noreferrer noopener">
           How the glassbox layer works
         </a>

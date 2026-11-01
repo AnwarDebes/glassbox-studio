@@ -46,30 +46,78 @@ function Scores({ r }: { r: Result }) {
   );
 }
 
-function Clause({ c }: { c: ClauseEvidence }) {
+function Clause({ c, winner }: { c: ClauseEvidence; winner: string }) {
   const sign = c.polarity > 0 ? '+' : '−';
+  const head = ruleHead(c.rule);
+  const [all, setAll] = useState(false);
   return (
-    <li className={`ev-clause ${c.polarity > 0 ? 'for' : 'against'}`}>
+    <li className={`ev-clause ${c.cls === winner && c.polarity > 0 ? 'for' : 'against'}`}>
       <div className="ev-clause-head">
         <span className={`ev-weight ${pillClass(c.cls)}`} title={`${c.polarity > 0 ? 'Votes for' : 'Votes against'} ${c.cls} with weight ${c.weight}`}>
           {sign}
           {c.weight}
         </span>
         <span className="ev-clause-cls">{c.polarity > 0 ? 'for' : 'against'} {c.cls}</span>
+        {c.polarity > 0 && c.cls !== winner ? <span className="ev-against">argued against this decision</span> : null}
         <span className="ev-clause-id faint">clause {c.id}</span>
       </div>
-      <p className="ev-rule">{c.rule}</p>
+      {head ? (
+        <p className="ev-rule-head">
+          <strong>{head}</strong>, because all of these hold:
+        </p>
+      ) : (
+        <p className="ev-rule">{c.rule}</p>
+      )}
       {c.literals.length ? (
         <div className="ev-literals">
-          {c.literals.map((l, i) => (
-            <code key={i} className={`lit ${/^(NOT |¬|!)/.test(l) ? 'neg' : ''}`}>
+          {(all ? c.literals : c.literals.slice(0, LITERALS_SHOWN)).map((l, i) => (
+            <span key={i} className={`lit phrase ${isNegated(l) ? 'neg' : ''}`}>
               {l}
-            </code>
+            </span>
           ))}
+          {c.literals.length > LITERALS_SHOWN ? (
+            <button type="button" className="lit-more" onClick={() => setAll(!all)} aria-expanded={all}>
+              {all ? 'Show fewer' : `+${c.literals.length - LITERALS_SHOWN} more`}
+            </button>
+          ) : null}
         </div>
       ) : null}
     </li>
   );
+}
+
+const LITERALS_SHOWN = 8;
+
+function isNegated(literal: string): boolean {
+  return /^(NOT\b|not\b|no\b|nothing\b|¬|!)/.test(literal) || /\bis not\b/.test(literal);
+}
+
+/** "block" from "block because: a AND b", or null for other rule formats. */
+export function ruleHead(rule: string): string | null {
+  const m = /^(.*?) because:? /.exec(rule);
+  return m ? m[1] : null;
+}
+
+/**
+ * The clause that best explains a decision in one line: among the clauses
+ * voting for the winner, the one with the most positive (present) conditions,
+ * then the heaviest.
+ */
+export function tellingClause(r: Result): ClauseEvidence | undefined {
+  const cls = decisionOf(r);
+  const positives = (c: ClauseEvidence) => c.literals.filter((l) => !isNegated(l)).length;
+  return r.evidence
+    .filter((e) => e.cls === cls && e.polarity > 0)
+    .sort((a, b) => positives(b) - positives(a) || b.weight - a.weight)[0];
+}
+
+/** A one-line reading of a clause for previews: "block because a and b, and 12 more". */
+export function ruleSummary(c: ClauseEvidence, n = 2): string {
+  const head = ruleHead(c.rule);
+  if (!head || !c.literals.length) return c.rule;
+  const shown = c.literals.slice(0, n).join(' and ');
+  const rest = c.literals.length - n;
+  return `${head} because ${shown}${rest > 0 ? `, and ${rest} more` : ''}`;
 }
 
 interface EvidenceProps {
@@ -82,7 +130,9 @@ export function Evidence({ result, compact: small }: EvidenceProps) {
   const [all, setAll] = useState(false);
   const cards = useGlassbox((s) => s.cards);
   const card = cards.find((c) => c.id === result.modelId);
-  const clauses = [...result.evidence].sort((a, b) => b.weight - a.weight || b.polarity - a.polarity);
+  const winner = decisionOf(result);
+  const decided = (c: ClauseEvidence) => (c.cls === winner && c.polarity > 0 ? 1 : 0);
+  const clauses = [...result.evidence].sort((a, b) => decided(b) - decided(a) || b.weight - a.weight);
   const limit = small ? 3 : 5;
   const shown = all ? clauses : clauses.slice(0, limit);
   const s = savings(result.compute);
@@ -102,7 +152,7 @@ export function Evidence({ result, compact: small }: EvidenceProps) {
       {clauses.length ? (
         <ul className="ev-clauses">
           {shown.map((c) => (
-            <Clause key={`${c.cls}-${c.id}`} c={c} />
+            <Clause key={`${c.cls}-${c.id}`} c={c} winner={winner} />
           ))}
         </ul>
       ) : (
