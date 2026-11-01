@@ -35,7 +35,7 @@
   Compute meter: LLM tokens, logic operations and the estimated savings factor.
 - **Decision layer**: the studio uses the real Tsetlin Machine guard and router
   from `src/glassbox` (models in `public/models`, loaded from
-  `BASE_URL + 'models/'`); the temporary stub is gone. The model list shows the
+  `BASE_URL + 'models/'`). The model list shows the
   prototype figures on synthetic data: guard 99.2% held-out (n = 1,074), 97.7% on
   the challenge set (n = 129), 180 clauses over 355 features, 101 KiB; router
   98.7% held-out (n = 520), 95.8% challenge (n = 120), 497 clauses over 628
