@@ -8,7 +8,8 @@
 
 <p align="center">
   <a href="https://anwardebes.github.io/glassbox-studio/">Open the live app</a> ·
-  <a href="https://anwardebes.github.io/glassbox-studio/#/demo">Watch the demo</a> ·
+  <a href="https://anwardebes.github.io/glassbox-studio/#/demo">Try the demo</a> ·
+  <a href="https://youtu.be/TJKM7-aPJ-U">Watch the 1-minute video</a> ·
   <a href="glassbox/README.md">How the glassbox layer works</a>
 </p>
 
