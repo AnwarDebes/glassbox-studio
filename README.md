@@ -9,8 +9,7 @@
 <p align="center">
   <a href="https://anwardebes.github.io/glassbox-studio/">Open the live app</a> ·
   <a href="https://anwardebes.github.io/glassbox-studio/#/demo">Try the demo</a> ·
-  <a href="https://youtu.be/TJKM7-aPJ-U">Watch the 1-minute video</a> ·
-  <a href="https://anwardebes.github.io/shorts/#guard">Watch the 40-second short</a> ·
+  <a href="https://youtube.com/shorts/6h59XIxNxV4">Watch the 34-second video</a> ·
   <a href="https://anwardebes.github.io/shorts/#tamper">Watch the ledger tamper test</a> ·
   <a href="glassbox/README.md">How the glassbox layer works</a>
 </p>
